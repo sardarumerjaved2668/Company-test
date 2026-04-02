@@ -1,0 +1,232 @@
+{
+  "stats": {
+    "modelsCount": "525+",
+    "buildersCount": "82K",
+    "labsCount": "28",
+    "avgRating": "4.8"
+  },
+  "featuredModels": [
+    {
+      "id": "claude-opus-46",
+      "label": "Claude Opus 4.6 & Sonnet 4.6",
+      "badge": "🆕 Just Released",
+      "lab": "Anthropic",
+      "tag": "Adaptive Thinking",
+      "description": "1M token context and adaptive thinking for complex reasoning, coding, and agentic workflows."
+    },
+    {
+      "id": "gemini-31-pro",
+      "label": "Gemini 3.1 Pro — Thought Signatures",
+      "badge": "🔥 Hot",
+      "lab": "Google DeepMind",
+      "tag": "Ultra-long context",
+      "description": "5M context with Thought Signatures for transparent deep reasoning and document analysis."
+    },
+    {
+      "id": "gpt-54",
+      "label": "GPT-5.4 — Native Computer-Use Agents",
+      "badge": "🤖 Computer Use",
+      "lab": "OpenAI",
+      "tag": "Agentic",
+      "description": "Built-in computer-use agents for autonomous browser, app, and file workflows."
+    }
+  ],
+  "labs": [
+    { "id": "openai", "icon": "🧠", "name": "OpenAI", "summary": "3 models · GPT-5.4, Sora 2" },
+    { "id": "anthropic", "icon": "⚡", "name": "Anthropic", "summary": "3 models · Opus, Sonnet, Haiku" },
+    { "id": "deepmind", "icon": "🔬", "name": "Google DeepMind", "summary": "5 models · Gemini 3.1, Veo 3" },
+    { "id": "xai", "icon": "𝕏", "name": "xAI (Grok)", "summary": "2 models · Grok-4-1, Grok-Imagine" },
+    { "id": "deepseek", "icon": "💻", "name": "DeepSeek", "summary": "3 models · V3, V3.2, R1" },
+    { "id": "meta", "icon": "🦙", "name": "Meta (Llama)", "summary": "2 models · Maverick, Scout" },
+    { "id": "qwen", "icon": "🀄", "name": "Alibaba (Qwen)", "summary": "2 models · Qwen3-Max, Coder" },
+    { "id": "mistral", "icon": "🌀", "name": "Mistral", "summary": "2 models · Devstral 2, Medium 3.1" },
+    { "id": "nvidia", "icon": "🟢", "name": "NVIDIA NIM", "summary": "4 models · Nemotron Ultra, Nano" },
+    { "id": "glm", "icon": "🔷", "name": "GLM (Zhipu)", "summary": "3 models · GLM-5, 4.7, 4.6V" },
+    { "id": "moonshot", "icon": "🌙", "name": "Moonshot (Kimi)", "summary": "2 models · k2.5, k2-Thinking" }
+  ],
+  "builderFeatures": [
+    {
+      "id": "guided-chat",
+      "icon": "🧭",
+      "title": "Guided Discovery Chat",
+      "description": "Have a natural conversation about your goals and get model recommendations without touching a dropdown."
+    },
+    {
+      "id": "prompt-guide",
+      "icon": "📐",
+      "title": "Prompt Engineering Guide",
+      "description": "Tailored prompt templates and principles for every model so your first request already feels pro-level."
+    },
+    {
+      "id": "agent-builder",
+      "icon": "🤖",
+      "title": "Agent Builder",
+      "description": "Step-by-step blueprints for creating production-ready AI agents — tools, memory, and deployment."
+    },
+    {
+      "id": "flex-pricing",
+      "icon": "💰",
+      "title": "Flexible Pricing",
+      "description": "From free-tier to enterprise — compare cost per 1M tokens and pick the right fit for your budget."
+    },
+    {
+      "id": "reviews",
+      "icon": "⭐",
+      "title": "User Reviews & Ratings",
+      "description": "Real feedback, benchmark scores, and I/O specs to help you choose with confidence."
+    },
+    {
+      "id": "research-feed",
+      "icon": "🔬",
+      "title": "Research Feed",
+      "description": "Stay ahead with curated daily updates on new models, pricing changes, and breakthrough papers."
+    }
+  ],
+  "budgets": [
+    {
+      "id": "free",
+      "label": "Free & Open Source",
+      "emoji": "🆓",
+      "summary": "Llama 4 Maverick, DeepSeek-V3, DeepSeek-R1 — self-host with zero API cost.",
+      "countLabel": "6 models available →"
+    },
+    {
+      "id": "budget",
+      "label": "Budget — Under $0.50/1M",
+      "emoji": "💸",
+      "summary": "Gemini 3.1 Flash-Lite, Mistral Medium, Nemotron Nano — best performance per dollar.",
+      "countLabel": "9 models available →"
+    },
+    {
+      "id": "mid",
+      "label": "Mid-Range — $1–$5/1M",
+      "emoji": "⚖️",
+      "summary": "Claude Sonnet 4.6, GPT-5.4, Qwen3-Max — balanced price and capability.",
+      "countLabel": "11 models available →"
+    },
+    {
+      "id": "premium",
+      "label": "Premium — $5+/1M",
+      "emoji": "🏆",
+      "summary": "Claude Opus 4.6, Sora 2 Pro, gpt-image-1.5 — top-tier quality for demanding workloads.",
+      "countLabel": "5 models available →"
+    }
+  ],
+  "useCases": [
+    {
+      "id": "code",
+      "emoji": "💻",
+      "title": "Code Generation",
+      "models": "Claude Opus 4.6, Devstral 2, GPT-5.4, Qwen3-Coder",
+      "cta": "Start building →"
+    },
+    {
+      "id": "image",
+      "emoji": "🎨",
+      "title": "Image Generation",
+      "models": "gpt-image-1.5, Grok-Imagine-Pro, Gemini Flash Image",
+      "cta": "Create images →"
+    },
+    {
+      "id": "agents",
+      "emoji": "🤖",
+      "title": "AI Agents",
+      "models": "GPT-5.4, Claude Opus 4.6, kimi-k2.5, Grok-4-1",
+      "cta": "Build agents →"
+    },
+    {
+      "id": "docs",
+      "emoji": "📄",
+      "title": "Document Analysis",
+      "models": "Claude Sonnet 4.6, Gemini 3.1 Pro, Nemotron Ultra",
+      "cta": "Analyse docs →"
+    },
+    {
+      "id": "video",
+      "emoji": "🎬",
+      "title": "Video Generation",
+      "models": "Sora 2 Pro, Veo 3.1, Grok-Imagine-Video",
+      "cta": "Create video →"
+    },
+    {
+      "id": "audio",
+      "emoji": "🔊",
+      "title": "Voice & Audio",
+      "models": "Gemini-TTS, ElevenLabs, Whisper v3",
+      "cta": "Add voice →"
+    },
+    {
+      "id": "translate",
+      "emoji": "🌍",
+      "title": "Multilingual / Translation",
+      "models": "Qwen3-Max (119 langs), Gemini 3.1 Flash-Lite, GLM-4.7",
+      "cta": "Go multilingual →"
+    },
+    {
+      "id": "research",
+      "emoji": "🔢",
+      "title": "Math & Research",
+      "models": "DeepSeek-R1, QwQ-32B, Gemini 3.1 Pro",
+      "cta": "Start researching →"
+    }
+  ],
+  "flagshipModels": [
+    {
+      "id": "gpt-54-flagship",
+      "model": "GPT-5.4",
+      "lab": "OpenAI",
+      "context": "1M",
+      "input": "$5.00",
+      "output": "$15.00",
+      "multimodal": "Yes",
+      "speed": "Fast",
+      "bestFor": "Computer-use agents, coding"
+    },
+    {
+      "id": "claude-opus-46-flagship",
+      "model": "Claude Opus 4.6",
+      "lab": "Anthropic",
+      "context": "1M (beta)",
+      "input": "$6.00",
+      "output": "$18.00",
+      "multimodal": "Yes",
+      "speed": "Balanced",
+      "bestFor": "Reasoning, agents"
+    },
+    {
+      "id": "gemini-31-pro-flagship",
+      "model": "Gemini 3.1 Pro",
+      "lab": "Google DeepMind",
+      "context": "5M",
+      "input": "$3.00",
+      "output": "$9.00",
+      "multimodal": "Yes",
+      "speed": "Fast",
+      "bestFor": "Ultra-long docs"
+    }
+  ],
+  "trending": [
+    {
+      "id": "trend-claude",
+      "badge": "🆕 Just Released",
+      "lab": "Anthropic",
+      "title": "Claude Opus 4.6 & Sonnet 4.6",
+      "description": "Adaptive Thinking and 1M token context (beta) mark a major leap in agent capability."
+    },
+    {
+      "id": "trend-gemini",
+      "badge": "🔥 Hot",
+      "lab": "Google DeepMind",
+      "title": "Gemini 3.1 Pro — Thought Signatures",
+      "description": "Thought Signatures add transparency to deep reasoning with a 5M token context window."
+    },
+    {
+      "id": "trend-gpt54",
+      "badge": "🤖 Computer Use",
+      "lab": "OpenAI",
+      "title": "GPT-5.4 — Native Computer-Use Agents",
+      "description": "Operate browsers, apps, and files autonomously with improved reasoning efficiency."
+    }
+  ]
+}
+

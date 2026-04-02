@@ -1,0 +1,32 @@
+{
+  "sessions": [
+    {
+      "id": "s1",
+      "title": "Great question! Here are the most relevant models based on what you said — tap any card to explore, or click “Proceed” to start the variation selector and agent wizard.",
+      "models": [
+        { "id": "gpt-5-4", "name": "GPT-5.4", "provider": "OpenAI", "tag": "General reasoning" },
+        { "id": "claude-sonnet-46", "name": "Claude Sonnet 4.6", "provider": "Anthropic", "tag": "Balanced coding & docs" },
+        { "id": "gemini-31-pro", "name": "Gemini 3.1 Pro", "provider": "Google DeepMind", "tag": "Long context & research" }
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Great question! Here are the most relevant models based on what you said — tap any card to explore, or click “Proceed” to start the variation selector and agent wizard again.",
+      "models": [
+        { "id": "gpt-5-4-b", "name": "GPT-5.4", "provider": "OpenAI", "tag": "Chat & tools" },
+        { "id": "claude-sonnet-48", "name": "Claude Sonnet 4.8", "provider": "Anthropic", "tag": "Analysis & safety" },
+        { "id": "gemini-25-pro", "name": "Gemini 2.5 Pro", "provider": "Google DeepMind", "tag": "Grounded search" }
+      ]
+    }
+  ],
+  "quickUseCases": [
+    "Use cases",
+    "Monitor the situation",
+    "Create a prototype",
+    "Build a business plan",
+    "Create content",
+    "Analyze & research",
+    "Learn something"
+  ]
+}
+

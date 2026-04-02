@@ -1,0 +1,597 @@
+[
+  {
+    "_id": "gpt4o",
+    "slug": "gpt-4o",
+    "name": "GPT-4o",
+    "provider": "OpenAI",
+    "description": "OpenAI's most advanced multimodal model. Accepts text, image, and audio inputs and produces text and audio outputs. Excels at reasoning, coding, and creative tasks with fast response times.",
+    "categories": ["Text Generation", "Code Generation", "Multimodal", "Reasoning"],
+    "capabilities": ["text", "code", "reasoning", "image-understanding", "audio", "multilingual", "function-calling"],
+    "scores": {
+      "reasoning": 95,
+      "coding": 93,
+      "creativity": 90,
+      "speed": 88,
+      "multimodal": 92,
+      "contextHandling": 85,
+      "costEfficiency": 65
+    },
+    "contextWindow": 128000,
+    "pricing": { "tier": "premium", "input": 2.50, "output": 10.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-05",
+    "strengths": [
+      "Excellent reasoning and analytical capabilities",
+      "Strong multimodal understanding (text, image, audio)",
+      "Fast response times compared to predecessors",
+      "Superior code generation and debugging"
+    ],
+    "limitations": [
+      "Higher cost compared to smaller models",
+      "Knowledge cutoff limits real-time information",
+      "Can hallucinate on niche or obscure topics",
+      "Rate limits on high-volume usage"
+    ]
+  },
+  {
+    "_id": "claude-sonnet",
+    "slug": "claude-4-sonnet",
+    "name": "Claude 4 Sonnet",
+    "provider": "Anthropic",
+    "description": "Anthropic's balanced model offering strong reasoning, coding, and safety. Ideal for production workloads requiring reliability, nuanced understanding, and long-context processing.",
+    "categories": ["Text Generation", "Code Generation", "Reasoning", "Analysis"],
+    "capabilities": ["text", "code", "reasoning", "analysis", "multilingual", "long-context", "safety"],
+    "scores": {
+      "reasoning": 94,
+      "coding": 95,
+      "creativity": 88,
+      "speed": 85,
+      "multimodal": 78,
+      "contextHandling": 95,
+      "costEfficiency": 75
+    },
+    "contextWindow": 200000,
+    "pricing": { "tier": "mid", "input": 3.00, "output": 15.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2025-04",
+    "strengths": [
+      "Industry-leading code generation and analysis",
+      "200K token context window for long documents",
+      "Strong safety alignment and reduced hallucinations",
+      "Excellent at following complex instructions"
+    ],
+    "limitations": [
+      "No native image generation capabilities",
+      "Slightly slower than GPT-4o for simple tasks",
+      "Limited multimodal input support compared to GPT-4o",
+      "Higher cost than budget alternatives"
+    ]
+  },
+  {
+    "_id": "gemini-pro",
+    "slug": "gemini-2-pro",
+    "name": "Gemini 2.0 Pro",
+    "provider": "Google",
+    "description": "Google's flagship multimodal AI model with native support for text, images, video, and code. Built on Google's infrastructure for fast, scalable inference across diverse tasks.",
+    "categories": ["Text Generation", "Multimodal", "Code Generation", "Research"],
+    "capabilities": ["text", "code", "reasoning", "image-understanding", "video", "multilingual", "search-grounding"],
+    "scores": {
+      "reasoning": 92,
+      "coding": 90,
+      "creativity": 87,
+      "speed": 90,
+      "multimodal": 95,
+      "contextHandling": 90,
+      "costEfficiency": 72
+    },
+    "contextWindow": 2000000,
+    "pricing": { "tier": "premium", "input": 1.25, "output": 5.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2025-02",
+    "strengths": [
+      "Massive 2M token context window",
+      "Native video and image understanding",
+      "Strong integration with Google ecosystem",
+      "Competitive pricing for premium capabilities"
+    ],
+    "limitations": [
+      "Occasional inconsistencies in complex reasoning",
+      "Less refined code generation than specialized models",
+      "Google ecosystem lock-in for some features",
+      "Variable output quality on creative tasks"
+    ]
+  },
+  {
+    "_id": "llama-3",
+    "slug": "llama-3-70b",
+    "name": "Llama 3.1 70B",
+    "provider": "Meta",
+    "description": "Meta's powerful open-source language model. Strong reasoning and coding abilities with the freedom to deploy on your own infrastructure. Ideal for teams needing full control.",
+    "categories": ["Text Generation", "Code Generation", "Open Source"],
+    "capabilities": ["text", "code", "reasoning", "multilingual", "fine-tuning", "self-hosting"],
+    "scores": {
+      "reasoning": 82,
+      "coding": 85,
+      "creativity": 78,
+      "speed": 80,
+      "multimodal": 30,
+      "contextHandling": 75,
+      "costEfficiency": 95
+    },
+    "contextWindow": 128000,
+    "pricing": { "tier": "free", "input": 0, "output": 0, "unit": "self-hosted" },
+    "openSource": true,
+    "apiAvailable": true,
+    "releaseDate": "2024-07",
+    "strengths": [
+      "Fully open source — deploy anywhere",
+      "No per-token cost when self-hosted",
+      "Strong performance for its size class",
+      "Fine-tunable for domain-specific tasks"
+    ],
+    "limitations": [
+      "Requires significant compute for self-hosting",
+      "Weaker multimodal capabilities",
+      "Less refined than frontier closed models",
+      "Community support vs. enterprise SLA"
+    ]
+  },
+  {
+    "_id": "dalle-3",
+    "slug": "dall-e-3",
+    "name": "DALL·E 3",
+    "provider": "OpenAI",
+    "description": "OpenAI's most advanced image generation model. Creates highly detailed, accurate images from text descriptions with improved prompt following and artistic range.",
+    "categories": ["Image Generation", "Creative", "Design"],
+    "capabilities": ["image-generation", "art", "design", "creative", "text-to-image"],
+    "scores": {
+      "reasoning": 20,
+      "coding": 0,
+      "creativity": 97,
+      "speed": 70,
+      "multimodal": 85,
+      "contextHandling": 30,
+      "costEfficiency": 55
+    },
+    "contextWindow": 4000,
+    "pricing": { "tier": "mid", "input": 0.04, "output": 0.08, "unit": "per image" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2023-10",
+    "strengths": [
+      "Best-in-class prompt adherence for image generation",
+      "Handles complex scenes with multiple elements",
+      "Excellent text rendering within images",
+      "Wide range of artistic styles"
+    ],
+    "limitations": [
+      "No text or code understanding",
+      "Cannot edit existing images precisely",
+      "Higher cost per generation than open alternatives",
+      "Content policy restrictions on certain subjects"
+    ]
+  },
+  {
+    "_id": "whisper-v3",
+    "slug": "whisper-v3",
+    "name": "Whisper V3",
+    "provider": "OpenAI",
+    "description": "State-of-the-art speech recognition model supporting 99+ languages. Converts audio to text with high accuracy, handles accents, background noise, and technical vocabulary.",
+    "categories": ["Audio", "Speech-to-Text", "Transcription"],
+    "capabilities": ["voice", "audio", "transcription", "speech-recognition", "multilingual", "translation"],
+    "scores": {
+      "reasoning": 15,
+      "coding": 0,
+      "creativity": 20,
+      "speed": 92,
+      "multimodal": 75,
+      "contextHandling": 60,
+      "costEfficiency": 90
+    },
+    "contextWindow": 0,
+    "pricing": { "tier": "budget", "input": 0.006, "output": 0, "unit": "per minute" },
+    "openSource": true,
+    "apiAvailable": true,
+    "releaseDate": "2023-11",
+    "strengths": [
+      "Supports 99+ languages with high accuracy",
+      "Robust against background noise and accents",
+      "Open-source and self-hostable",
+      "Very cost-effective for transcription"
+    ],
+    "limitations": [
+      "Audio-only — no text or image capabilities",
+      "Real-time streaming has higher latency",
+      "Struggles with heavily overlapping speakers",
+      "No speaker diarization built-in"
+    ]
+  },
+  {
+    "_id": "midjourney-v6",
+    "slug": "midjourney-v6",
+    "name": "Midjourney V6",
+    "provider": "Midjourney",
+    "description": "Leading AI image generation platform known for stunning artistic output. Creates photorealistic and stylized images with exceptional aesthetic quality and composition.",
+    "categories": ["Image Generation", "Creative", "Art"],
+    "capabilities": ["image-generation", "art", "design", "creative", "photorealistic"],
+    "scores": {
+      "reasoning": 10,
+      "coding": 0,
+      "creativity": 99,
+      "speed": 65,
+      "multimodal": 70,
+      "contextHandling": 20,
+      "costEfficiency": 50
+    },
+    "contextWindow": 0,
+    "pricing": { "tier": "mid", "input": 0, "output": 0, "unit": "subscription $30/mo" },
+    "openSource": false,
+    "apiAvailable": false,
+    "releaseDate": "2024-01",
+    "strengths": [
+      "Unmatched aesthetic quality and artistic style",
+      "Exceptional photorealistic capabilities",
+      "Strong community and prompt sharing ecosystem",
+      "Consistent high-quality output"
+    ],
+    "limitations": [
+      "No public API — Discord/web only",
+      "Subscription-only pricing model",
+      "Less precise prompt following than DALL-E 3",
+      "Cannot generate text within images reliably"
+    ]
+  },
+  {
+    "_id": "stable-diffusion-xl",
+    "slug": "stable-diffusion-xl",
+    "name": "Stable Diffusion XL",
+    "provider": "Stability AI",
+    "description": "Open-source image generation model offering high-quality outputs with full customization. Run locally or in the cloud with complete control over the generation pipeline.",
+    "categories": ["Image Generation", "Open Source", "Creative"],
+    "capabilities": ["image-generation", "art", "design", "creative", "fine-tuning", "self-hosting"],
+    "scores": {
+      "reasoning": 10,
+      "coding": 0,
+      "creativity": 88,
+      "speed": 82,
+      "multimodal": 65,
+      "contextHandling": 20,
+      "costEfficiency": 95
+    },
+    "contextWindow": 0,
+    "pricing": { "tier": "free", "input": 0, "output": 0, "unit": "self-hosted" },
+    "openSource": true,
+    "apiAvailable": true,
+    "releaseDate": "2023-07",
+    "strengths": [
+      "Fully open-source with community model ecosystem",
+      "No per-image cost when self-hosted",
+      "Highly customizable via LoRA and fine-tuning",
+      "Large ecosystem of community-trained models"
+    ],
+    "limitations": [
+      "Requires GPU for reasonable generation speed",
+      "Lower prompt adherence than DALL-E 3",
+      "Text rendering in images is poor",
+      "Quality varies significantly with settings"
+    ]
+  },
+  {
+    "_id": "mistral-large",
+    "slug": "mistral-large-2",
+    "name": "Mistral Large 2",
+    "provider": "Mistral AI",
+    "description": "Mistral's flagship model with strong multilingual and reasoning capabilities. Competitive with frontier models at a lower price point, with emphasis on European language support.",
+    "categories": ["Text Generation", "Code Generation", "Multilingual"],
+    "capabilities": ["text", "code", "reasoning", "multilingual", "function-calling", "analysis"],
+    "scores": {
+      "reasoning": 88,
+      "coding": 86,
+      "creativity": 82,
+      "speed": 84,
+      "multimodal": 45,
+      "contextHandling": 80,
+      "costEfficiency": 82
+    },
+    "contextWindow": 128000,
+    "pricing": { "tier": "mid", "input": 2.00, "output": 6.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-07",
+    "strengths": [
+      "Excellent multilingual support (esp. European languages)",
+      "Competitive performance at lower cost",
+      "Strong function calling and tool use",
+      "Good balance of speed and quality"
+    ],
+    "limitations": [
+      "Limited multimodal capabilities",
+      "Smaller ecosystem than OpenAI/Anthropic",
+      "Less refined for creative writing tasks",
+      "Enterprise support still maturing"
+    ]
+  },
+  {
+    "_id": "cohere-command-r",
+    "slug": "command-r-plus",
+    "name": "Command R+",
+    "provider": "Cohere",
+    "description": "Cohere's enterprise-focused model optimized for retrieval-augmented generation (RAG), tool use, and business applications. Excels at grounded, citation-backed responses.",
+    "categories": ["Text Generation", "RAG", "Enterprise", "Search"],
+    "capabilities": ["text", "reasoning", "rag", "search", "analysis", "citation", "enterprise"],
+    "scores": {
+      "reasoning": 80,
+      "coding": 68,
+      "creativity": 70,
+      "speed": 86,
+      "multimodal": 35,
+      "contextHandling": 88,
+      "costEfficiency": 85
+    },
+    "contextWindow": 128000,
+    "pricing": { "tier": "mid", "input": 2.50, "output": 10.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-04",
+    "strengths": [
+      "Best-in-class RAG and citation capabilities",
+      "Strong enterprise-grade reliability",
+      "Excellent grounded responses with source attribution",
+      "Good cost efficiency for enterprise workloads"
+    ],
+    "limitations": [
+      "Weaker coding capabilities than competitors",
+      "Limited creative writing abilities",
+      "No image or audio capabilities",
+      "Smaller model ecosystem"
+    ]
+  },
+  {
+    "_id": "gpt-4o-mini",
+    "slug": "gpt-4o-mini",
+    "name": "GPT-4o Mini",
+    "provider": "OpenAI",
+    "description": "Compact and cost-effective version of GPT-4o. Delivers strong performance for everyday tasks at a fraction of the cost, ideal for high-volume applications and prototyping.",
+    "categories": ["Text Generation", "Code Generation", "Budget"],
+    "capabilities": ["text", "code", "reasoning", "multilingual", "function-calling"],
+    "scores": {
+      "reasoning": 78,
+      "coding": 80,
+      "creativity": 75,
+      "speed": 95,
+      "multimodal": 60,
+      "contextHandling": 75,
+      "costEfficiency": 92
+    },
+    "contextWindow": 128000,
+    "pricing": { "tier": "budget", "input": 0.15, "output": 0.60, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-07",
+    "strengths": [
+      "Extremely cost-effective for high-volume usage",
+      "Fast response times for real-time applications",
+      "Good enough quality for most everyday tasks",
+      "Same API interface as GPT-4o"
+    ],
+    "limitations": [
+      "Noticeably weaker reasoning on complex problems",
+      "Less nuanced creative output",
+      "Can struggle with multi-step instructions",
+      "Reduced performance on specialized domains"
+    ]
+  },
+  {
+    "_id": "gemini-flash",
+    "slug": "gemini-2-flash",
+    "name": "Gemini 2.0 Flash",
+    "provider": "Google",
+    "description": "Google's speed-optimized model designed for low-latency applications. Maintains strong capabilities while delivering responses significantly faster than Gemini Pro.",
+    "categories": ["Text Generation", "Speed", "Budget", "Multimodal"],
+    "capabilities": ["text", "code", "reasoning", "image-understanding", "speed", "multilingual"],
+    "scores": {
+      "reasoning": 80,
+      "coding": 78,
+      "creativity": 75,
+      "speed": 97,
+      "multimodal": 82,
+      "contextHandling": 85,
+      "costEfficiency": 94
+    },
+    "contextWindow": 1000000,
+    "pricing": { "tier": "budget", "input": 0.10, "output": 0.40, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2025-02",
+    "strengths": [
+      "Fastest inference among frontier models",
+      "1M token context window",
+      "Excellent cost efficiency",
+      "Strong multimodal understanding"
+    ],
+    "limitations": [
+      "Trades quality for speed on complex tasks",
+      "Less refined than Gemini Pro",
+      "Can produce shallower analysis",
+      "Not ideal for production-critical reasoning"
+    ]
+  },
+  {
+    "_id": "claude-haiku",
+    "slug": "claude-haiku-4",
+    "name": "Claude Haiku 4.5",
+    "provider": "Anthropic",
+    "description": "Anthropic's fastest and most affordable model. Optimized for high-throughput, low-latency applications while maintaining strong safety and instruction-following capabilities.",
+    "categories": ["Text Generation", "Speed", "Budget", "Code Generation"],
+    "capabilities": ["text", "code", "reasoning", "speed", "safety", "multilingual"],
+    "scores": {
+      "reasoning": 75,
+      "coding": 80,
+      "creativity": 72,
+      "speed": 96,
+      "multimodal": 55,
+      "contextHandling": 80,
+      "costEfficiency": 95
+    },
+    "contextWindow": 200000,
+    "pricing": { "tier": "budget", "input": 0.80, "output": 4.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2025-01",
+    "strengths": [
+      "Very fast with low latency",
+      "Strong safety alignment even at speed",
+      "200K context window",
+      "Excellent value for budget-conscious teams"
+    ],
+    "limitations": [
+      "Less capable than Sonnet for complex reasoning",
+      "Shallower analysis on nuanced topics",
+      "Limited multimodal capabilities",
+      "Not suitable for critical research tasks"
+    ]
+  },
+  {
+    "_id": "copilot",
+    "slug": "github-copilot",
+    "name": "GitHub Copilot",
+    "provider": "Microsoft",
+    "description": "AI-powered code completion and generation tool integrated directly into IDEs. Trained on vast code repositories, it provides context-aware suggestions for dozens of languages.",
+    "categories": ["Code Generation", "Developer Tools", "IDE Integration"],
+    "capabilities": ["code", "code-completion", "refactoring", "documentation", "testing"],
+    "scores": {
+      "reasoning": 70,
+      "coding": 94,
+      "creativity": 55,
+      "speed": 95,
+      "multimodal": 20,
+      "contextHandling": 65,
+      "costEfficiency": 78
+    },
+    "contextWindow": 8000,
+    "pricing": { "tier": "mid", "input": 0, "output": 0, "unit": "subscription $19/mo" },
+    "openSource": false,
+    "apiAvailable": false,
+    "releaseDate": "2024-02",
+    "strengths": [
+      "Best-in-class IDE integration experience",
+      "Real-time code suggestions as you type",
+      "Supports 30+ programming languages",
+      "Learns from your codebase context"
+    ],
+    "limitations": [
+      "Subscription-only pricing",
+      "No standalone API access",
+      "Limited to code-related tasks",
+      "Can suggest insecure or outdated patterns"
+    ]
+  },
+  {
+    "_id": "suno-v3",
+    "slug": "suno-v3",
+    "name": "Suno V3.5",
+    "provider": "Suno",
+    "description": "AI music generation model that creates full songs with vocals, instruments, and production from text descriptions. Supports multiple genres, moods, and musical styles.",
+    "categories": ["Audio", "Music Generation", "Creative"],
+    "capabilities": ["audio", "music", "voice", "creative", "text-to-music"],
+    "scores": {
+      "reasoning": 10,
+      "coding": 0,
+      "creativity": 92,
+      "speed": 70,
+      "multimodal": 60,
+      "contextHandling": 15,
+      "costEfficiency": 65
+    },
+    "contextWindow": 0,
+    "pricing": { "tier": "mid", "input": 0, "output": 0, "unit": "subscription $10/mo" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-06",
+    "strengths": [
+      "Creates full songs with vocals and instruments",
+      "Wide genre and style support",
+      "Simple text-to-music interface",
+      "Rapid generation of multiple variations"
+    ],
+    "limitations": [
+      "Music quality can be inconsistent",
+      "Limited fine-grained control over arrangement",
+      "Copyright concerns for commercial use",
+      "No real-time or live performance capabilities"
+    ]
+  },
+  {
+    "_id": "eleven-labs",
+    "slug": "elevenlabs-v2",
+    "name": "ElevenLabs V2",
+    "provider": "ElevenLabs",
+    "description": "Leading AI voice synthesis platform producing natural-sounding speech in 29+ languages. Offers voice cloning, text-to-speech, and real-time voice conversion capabilities.",
+    "categories": ["Audio", "Text-to-Speech", "Voice Synthesis"],
+    "capabilities": ["voice", "audio", "text-to-speech", "voice-cloning", "multilingual"],
+    "scores": {
+      "reasoning": 10,
+      "coding": 0,
+      "creativity": 80,
+      "speed": 88,
+      "multimodal": 65,
+      "contextHandling": 30,
+      "costEfficiency": 60
+    },
+    "contextWindow": 0,
+    "pricing": { "tier": "mid", "input": 0, "output": 0, "unit": "subscription $5/mo" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-03",
+    "strengths": [
+      "Most natural-sounding AI voices available",
+      "Voice cloning from short samples",
+      "29+ language support",
+      "Real-time voice conversion"
+    ],
+    "limitations": [
+      "Per-character pricing can add up quickly",
+      "Voice cloning raises ethical concerns",
+      "Limited emotion control in some voices",
+      "Latency for real-time applications"
+    ]
+  },
+  {
+    "_id": "perplexity-sonar",
+    "slug": "perplexity-sonar",
+    "name": "Perplexity Sonar",
+    "provider": "Perplexity",
+    "description": "AI-powered search and research model that combines real-time web access with language model reasoning. Provides cited, up-to-date answers grounded in live internet sources.",
+    "categories": ["Search", "Research", "RAG", "Real-time"],
+    "capabilities": ["text", "search", "reasoning", "citation", "real-time", "research"],
+    "scores": {
+      "reasoning": 78,
+      "coding": 60,
+      "creativity": 55,
+      "speed": 85,
+      "multimodal": 40,
+      "contextHandling": 70,
+      "costEfficiency": 80
+    },
+    "contextWindow": 128000,
+    "pricing": { "tier": "budget", "input": 1.00, "output": 1.00, "unit": "per 1M tokens" },
+    "openSource": false,
+    "apiAvailable": true,
+    "releaseDate": "2024-08",
+    "strengths": [
+      "Real-time web access for current information",
+      "Automatic source citation and verification",
+      "Great for research and fact-checking",
+      "Cost-effective for search-augmented tasks"
+    ],
+    "limitations": [
+      "Weaker at creative and coding tasks",
+      "Dependent on web source quality",
+      "Limited offline capabilities",
+      "Not suitable for image or audio tasks"
+    ]
+  }
+]
