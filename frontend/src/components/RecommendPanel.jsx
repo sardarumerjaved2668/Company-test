@@ -1,35 +1,63 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { useLocale } from '../context/LocaleContext';
+import { RECOMMEND_PROMPTS } from '../i18n/recommendPrompts';
 import { useRecommendation } from '../hooks/useRecommendation';
 
-const QUICK = [
-  { label:'Create image',      icon:'🎨', prompt:'Create high quality images and artwork for my brand and product visuals.' },
-  { label:'Generate audio',    icon:'🎵', prompt:'Generate realistic voiceovers and audio content from text.' },
-  { label:'Create video',      icon:'🎬', prompt:'Create short marketing and explainer videos from scripts or ideas.' },
-  { label:'Create slides',     icon:'📊', prompt:'Turn a rough outline into a polished slide deck.' },
-  { label:'Create infographs', icon:'📈', prompt:'Generate infographic-style visuals from data and bullet points.' },
-  { label:'Create quiz',       icon:'❓', prompt:'Generate quizzes and questions from educational content.' },
-  { label:'Flashcards',        icon:'🗂️', prompt:'Create flashcards to help me study key concepts.' },
-  { label:'Mind map',          icon:'🧠', prompt:'Create a mind map for brainstorming and structuring ideas.' },
-  { label:'Analyse data',      icon:'📉', prompt:'Analyse a dataset and surface insights, trends, and anomalies.' },
-  { label:'Write content',     icon:'✍️', prompt:'Write long-form content, emails, and social posts in my tone.' },
-  { label:'Code generation',   icon:'💻', prompt:'Generate, refactor, and explain code for my project.' },
-  { label:'Document analysis', icon:'📄', prompt:'Summarise and analyse long documents and PDFs.' },
-  { label:'Translate',         icon:'🌐', prompt:'Translate content between multiple languages while preserving tone.' },
-  { label:'Just exploring',    icon:'🔭', prompt:'I am just exploring what AI models can do for me.' },
+const QUICK_KEYS = [
+  'createImage',
+  'generateAudio',
+  'createVideo',
+  'createSlides',
+  'createInfographs',
+  'createQuiz',
+  'flashcards',
+  'mindMap',
+  'analyseData',
+  'writeContent',
+  'codeGeneration',
+  'documentAnalysis',
+  'translate',
+  'justExploring',
 ];
 
 export default function RecommendPanel({ onResults, models }) {
+  const { t } = useLocale();
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const { recommend } = useRecommendation();
 
+  const quick = useMemo(
+    () =>
+      QUICK_KEYS.map((key) => ({
+        label: t(`recommend.quick.${key}`),
+        icon: {
+          createImage: '🎨',
+          generateAudio: '🎵',
+          createVideo: '🎬',
+          createSlides: '📊',
+          createInfographs: '📈',
+          createQuiz: '❓',
+          flashcards: '🗂️',
+          mindMap: '🧠',
+          analyseData: '📉',
+          writeContent: '✍️',
+          codeGeneration: '💻',
+          documentAnalysis: '📄',
+          translate: '🌐',
+          justExploring: '🔭',
+        }[key],
+        prompt: RECOMMEND_PROMPTS[key],
+      })),
+    [t]
+  );
+
   const run = async (q) => {
     const text = (q ?? query).trim();
     if (text.length < 4) {
-      setError('Describe your use case (at least 4 characters).');
+      setError(t('recommend.errorMin'));
       return;
     }
     setError('');
@@ -48,9 +76,9 @@ export default function RecommendPanel({ onResults, models }) {
 
   return (
     <section className="recommend-panel">
-      <div className="panel-label"><span>✦</span> Guided discovery</div>
-      <h2>Click the box and type anything</h2>
-      <p>You don&apos;t need the right keywords. Just describe what you&apos;d like to do — we&apos;ll take it from there.</p>
+      <div className="panel-label"><span>✦</span> {t('recommend.panelLabel')}</div>
+      <h2>{t('recommend.title')}</h2>
+      <p>{t('recommend.subtitle')}</p>
 
       <div className="input-wrapper">
         <div className="input-shell">
@@ -58,7 +86,7 @@ export default function RecommendPanel({ onResults, models }) {
             <input
               type="text"
               className="recommend-input"
-              placeholder='Click here and type anything — or just say "help me choose an AI model for…"'
+              placeholder={t('recommend.placeholder')}
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && run()}
@@ -87,12 +115,12 @@ export default function RecommendPanel({ onResults, models }) {
           {loading ? (
             <>
               <div className="spinner" />
-              <span>Working…</span>
+              <span>{t('recommend.working')}</span>
             </>
           ) : (
             <>
               <span className="btn-recommend-icon">🔍</span>
-              <span>Let&apos;s go</span>
+              <span>{t('recommend.go')}</span>
             </>
           )}
         </button>
@@ -101,9 +129,9 @@ export default function RecommendPanel({ onResults, models }) {
       {error && <p className="input-error">{error}</p>}
 
       <div className="quick-prompts">
-        {QUICK.map(({ label, icon, prompt }) => (
+        {quick.map(({ label, icon, prompt }) => (
           <button
-            key={label}
+            key={prompt}
             type="button"
             className="quick-prompt-btn"
             onClick={() => { setQuery(prompt); run(prompt); }}

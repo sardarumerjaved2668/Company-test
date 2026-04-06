@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "chatHub": "💬 Central de chat",
+    "marketplace": "🛍 Marketplace",
+    "agents": "🤖 Agentes",
+    "discoverNew": "🔬 Novidades",
+    "appLanguage": "IDIOMA DO APP",
+    "dashboard": "Painel",
+    "logout": "Sair",
+    "signIn": "Entrar",
+    "tryFree": "Testar grátis →"
+  },
+  "auth": {
+    "login": {
+      "title": "Bem-vindo de volta",
+      "subtitle": "Entre para salvar recomendações e acessar seu painel.",
+      "signIn": "Entrar",
+      "noAccount": "Não tem conta?",
+      "createOne": "Criar conta"
+    },
+    "register": {
+      "title": "Crie sua conta",
+      "subtitle": "Junte-se ao NexusAI-DB para salvar recomendações e histórico.",
+      "createAccount": "Criar conta",
+      "haveAccount": "Já tem conta?",
+      "signInLink": "Entrar"
+    }
+  },
+  "home": {
+    "badge": "Marketplace de modelos de IA",
+    "heroLine1": "Encontre seu",
+    "heroHighlight": "modelo de IA",
+    "heroLine2": "perfeito com descoberta guiada",
+    "heroSub": "Você não precisa saber tudo sobre IA. Responda a algumas perguntas simples e ajudamos a descobrir, comparar e implantar o modelo certo.",
+    "ctaPrimary": "Vamos lá",
+    "ctaSecondary": "Pular — buscar direto",
+    "builderSection": "Feito para todo criador",
+    "flagshipTitle": "Comparação de modelos flagship",
+    "trendingTitle": "🔥 Em alta esta semana",
+    "labsTitle": "Explorar por laboratório de IA",
+    "budgetTitle": "Modelos por orçamento",
+    "useCaseTitle": "Início rápido por caso de uso",
+    "featuredTitle": "Modelos em destaque",
+    "newsletterTitle": "Novos modelos toda semana.\nNão perca um lançamento.",
+    "footerBrand": "NexusAI Marketplace de modelos"
+  },
+  "recommend": {
+    "panelLabel": "Descoberta guiada",
+    "title": "Clique no campo e descreva o que precisa",
+    "subtitle": "Não precisa das palavras-chave certas. Descreva o que quer fazer — nós cuidamos do resto.",
+    "go": "Vamos lá",
+    "working": "Processando…"
+  },
+  "chatLauncher": {
+    "fabLabel": "Central de chat",
+    "title": "Chat de descoberta guiada",
+    "subtitle": "Diga o que quer fazer — ajudamos a achar os modelos certos.",
+    "send": "Enviar"
+  },
+  "marketplace": {
+    "titleModel": "Modelo",
+    "titleHighlight": "Marketplace",
+    "subtitle": "Pesquise e compare modelos de ponta: laboratórios, preços e capacidades.",
+    "pillModels": "525+ modelos",
+    "pillUpdated": "Atualizado diariamente",
+    "searchPlaceholder": "Buscar modelos, capacidades…",
+    "helpTitle": "Precisa de ajuda para escolher?",
+    "openChatHub": "Abrir central de chat →",
+    "emptyTitle": "Nenhum modelo encontrado",
+    "loading": "Carregando marketplace…"
+  },
+  "chatHub": {
+    "modelsSidebar": "MODELOS",
+    "welcomeTitle": "Bem-vindo! Estou aqui para ajudar 👋",
+    "quickActions": "AÇÕES RÁPIDAS"
+  },
+  "agents": {
+    "title": "Construtor de agentes",
+    "subtitle": "Crie agentes de IA poderosos com qualquer modelo. Escolha um modelo ou comece do zero.",
+    "newAgent": "+ Novo agente",
+    "templatesTitle": "Modelos de agentes"
+  },
+  "discover": {
+    "title": "Feed de pesquisa em IA"
+  },
+  "dashboard": {
+    "title": "Painel",
+    "welcomeBack": "Bem-vindo de volta,",
+    "profile": "Perfil"
+  }
+}

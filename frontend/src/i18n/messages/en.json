@@ -1,0 +1,584 @@
+{
+  "nav": {
+    "chatHub": "💬 Chat Hub",
+    "marketplace": "🛍 Marketplace",
+    "agents": "🤖 Agents",
+    "discoverNew": "🔬 Discover New",
+    "appLanguage": "APP LANGUAGE",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "signIn": "Sign in",
+    "tryFree": "Try free →"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to save recommendations and access your dashboard.",
+      "email": "Email",
+      "password": "Password",
+      "signingIn": "Signing in...",
+      "signIn": "Sign In",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one",
+      "loginFailed": "Login failed. Please try again."
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Join NexusAI-DB to save recommendations and track history.",
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "placeholderName": "John Doe",
+      "placeholderPasswordHint": "Min. 6 characters",
+      "placeholderConfirm": "Repeat password",
+      "creating": "Creating account...",
+      "createAccount": "Create Account",
+      "haveAccount": "Already have an account?",
+      "signInLink": "Sign in",
+      "passwordMismatch": "Passwords do not match",
+      "passwordShort": "Password must be at least 6 characters",
+      "registrationFailed": "Registration failed."
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeBack": "Welcome back,",
+    "admin": "⚡ Admin",
+    "user": "◆ User",
+    "profile": "Profile",
+    "profileBlurb": "This simplified dashboard shows your authenticated session using the login, signup, and session APIs."
+  },
+  "recommend": {
+    "panelLabel": "Guided discovery",
+    "title": "Click the box and type anything",
+    "subtitle": "You don't need the right keywords. Just describe what you'd like to do — we'll take it from there.",
+    "placeholder": "Click here and type anything — or just say \"help me choose an AI model for…\"",
+    "working": "Working…",
+    "go": "Let's go",
+    "errorMin": "Describe your use case (at least 4 characters).",
+    "quick": {
+      "createImage": "Create image",
+      "generateAudio": "Generate audio",
+      "createVideo": "Create video",
+      "createSlides": "Create slides",
+      "createInfographs": "Create infographs",
+      "createQuiz": "Create quiz",
+      "flashcards": "Flashcards",
+      "mindMap": "Mind map",
+      "analyseData": "Analyse data",
+      "writeContent": "Write content",
+      "codeGeneration": "Code generation",
+      "documentAnalysis": "Document analysis",
+      "translate": "Translate",
+      "justExploring": "Just exploring"
+    }
+  },
+  "chatLauncher": {
+    "fabAria": "Open guided discovery chat",
+    "fabLabel": "Chat Hub",
+    "title": "Guided Discovery Chat",
+    "subtitle": "Tell us what you're trying to do — we'll help you find the right models.",
+    "closeAria": "Close chat",
+    "welcomeBot": "Hi! I'm your guided discovery chat. Tell me what you want to build and I'll suggest which models to explore.",
+    "replyBot": "Great! I don't run a live AI model here yet, but based on your message I'll highlight suitable models in the recommendation panel above. Try also using the big input on the page to get a ranked top 3.",
+    "placeholder": "Describe your use case in plain language…",
+    "send": "Send",
+    "suggestions": [
+      "Help me choose a coding model",
+      "I want to generate product images",
+      "Recommend a model for long documents",
+      "Suggest a budget-friendly model"
+    ]
+  },
+  "agents": {
+    "title": "Agent Builder",
+    "subtitle": "Create powerful AI agents using any model. Pick a template or start from scratch.",
+    "newAgent": "+ New Agent",
+    "canvasTitle": "Not sure where to start?",
+    "canvasText": "Chat with our AI guide — describe what you want your agent to do and get a personalised setup plan.",
+    "askHub": "Ask the Hub →",
+    "templatesTitle": "Agent templates",
+    "useTemplate": "Use template →",
+    "templates": {
+      "research": {
+        "title": "Research Agent",
+        "description": "Automates web research, summarises findings, and generates structured reports on demand.",
+        "tags": ["Reports", "Web search"]
+      },
+      "support": {
+        "title": "Customer Support Agent",
+        "description": "Handles tickets, FAQs, and escalates complex issues with a full conversation context.",
+        "tags": ["Support", "Ticketing"]
+      },
+      "review": {
+        "title": "Code Review Agent",
+        "description": "Reviews pull requests, flags bugs, suggests improvements, and explains changes inline.",
+        "tags": ["Code", "GitHub"]
+      },
+      "analysis": {
+        "title": "Data Analysis Agent",
+        "description": "Processes spreadsheets, generates insights, creates visualisations, and answers data questions.",
+        "tags": ["Spreadsheets", "Charts"]
+      },
+      "content": {
+        "title": "Content Writer Agent",
+        "description": "Creates blog posts, social content, and marketing copy tuned to your brand voice.",
+        "tags": ["Content", "Marketing"]
+      }
+    }
+  },
+  "discover": {
+    "title": "AI Research Feed",
+    "items": {
+      "1": {
+        "title": "Gemini 2.5 Pro achieves new SOTA on reasoning benchmarks",
+        "summary": "Scores 82.3% on AIME 2025 math competition, outperforming all prior models on reasoning‑intensive tasks."
+      },
+      "2": {
+        "title": "Scaling laws for multimodal models: new empirical findings",
+        "summary": "Research reveals unexpected scaling dynamics when combining vision and language — efficiency gains plateau earlier than expected."
+      },
+      "3": {
+        "title": "Constitutional AI v2: improved alignment through iterative refinement",
+        "summary": "New methodology achieves 40% reduction in harmful outputs while preserving capability on standard benchmarks."
+      },
+      "4": {
+        "title": "Llama 4 Scout & Maverick: natively multimodal from the ground up",
+        "summary": "17B MoE architecture trained on 40 trillion tokens with native understanding across text, images, and audio."
+      },
+      "5": {
+        "title": "Long‑context recall: how models handle 1M+ token windows",
+        "summary": "Comprehensive evaluation shows sharp recall degradation beyond 200K tokens for most frontier models."
+      },
+      "6": {
+        "title": "DeepSeek‑R1 open weights: reproducing frontier reasoning at minimal cost",
+        "summary": "Full weight release enables fine‑tuning for domain‑specific reasoning at a fraction of frontier model prices."
+      }
+    }
+  },
+  "marketplace": {
+    "titleModel": "Model",
+    "titleHighlight": "Marketplace",
+    "subtitle": "Search and compare frontier models across labs, pricing tiers, and capabilities.",
+    "pillModels": "525+ models",
+    "pillUpdated": "Updated daily",
+    "searchPlaceholder": "Search models, capabilities...",
+    "filters": {
+      "allLabs": "All Labs",
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "googleDeepMind": "Google DeepMind",
+      "meta": "Meta",
+      "mistral": "Mistral",
+      "cohere": "Cohere",
+      "microsoft": "Microsoft",
+      "amazon": "Amazon"
+    },
+    "providers": {
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "googleDeepMind": "Google DeepMind",
+      "meta": "Meta"
+    },
+    "pricingTypes": {
+      "payPerUse": "Pay-per-use",
+      "subscription": "Subscription",
+      "freeTier": "Free tier"
+    },
+    "tags": {
+      "Premium": "Premium",
+      "Cost-effective": "Cost-effective",
+      "Turbo": "Turbo",
+      "Popular": "Popular",
+      "Everyday": "Everyday",
+      "Reasoning": "Reasoning",
+      "Open Source": "Open Source",
+      "New": "New"
+    },
+    "helpTitle": "Need help choosing?",
+    "helpText": "Chat with our AI guide for a personalised model recommendation in under 60 seconds.",
+    "openChatHub": "Open Chat Hub →",
+    "providerHeading": "PROVIDER",
+    "pricingHeading": "PRICING MODEL",
+    "emptyTitle": "No models found",
+    "emptyHint": "Try a different search term or filter.",
+    "loading": "Loading marketplace…",
+    "modalClose": "Close",
+    "modalBy": "by",
+    "apiAvailable": "API Available",
+    "aboutModel": "About this model",
+    "capabilities": "Capabilities",
+    "pricing": "Pricing",
+    "input": "Input",
+    "output": "Output",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "models": {
+      "gpt5": {
+        "description": "OpenAI flagship: native compute-aware agents, advanced reasoning, 2M context.",
+        "badges": ["Flagship", "Agents", "Multimodal"]
+      },
+      "gpt52": {
+        "description": "Mid-tier GPT-5 variant with improved instruction-following and multimodal support.",
+        "badges": ["Balanced", "Multimodal", "Streaming"]
+      },
+      "gpt5turbo": {
+        "description": "Most cost-effective GPT-5 for high-volume workloads and background automation.",
+        "badges": ["Cost-effective", "High-volume"]
+      },
+      "gpt45": {
+        "description": "Bridging model with improved creativity and long-form generation capabilities.",
+        "badges": ["Creative", "Long-form", "Language"]
+      },
+      "gpt41mini": {
+        "description": "Lightweight GPT-4.1 tier, ideal for everyday tasks and high-volume chat workloads.",
+        "badges": ["Everyday", "Fast", "Affordable"]
+      },
+      "gpt4o": {
+        "description": "OpenAI's flagship GPT-4o for lightweight chat, realtime tools, and streaming responses.",
+        "badges": ["Multimodal", "Streaming"]
+      },
+      "o3": {
+        "description": "OpenAI's advanced reasoning model with chain-of-thought for complex tasks and analysis.",
+        "badges": ["Reasoning", "Planning"]
+      },
+      "claude-opus": {
+        "description": "Anthropic's most capable model for complex analysis, research, and nuanced writing tasks.",
+        "badges": ["Reasoning", "Long-context", "Safety"]
+      },
+      "claude-sonnet": {
+        "description": "The ideal balance of speed and intelligence for high-throughput tasks and agentic workflows.",
+        "badges": ["Balanced", "Coding", "Analysis"]
+      },
+      "gemini-pro": {
+        "description": "Google's flagship multimodal model with native video, image, and 2M context window.",
+        "badges": ["Multimodal", "Search", "Long-context"]
+      },
+      "gemini-flash": {
+        "description": "Ultra-fast Gemini model for real-time applications, agents, and high-frequency tasks.",
+        "badges": ["Fast", "Cost-effective", "Multimodal"]
+      },
+      "llama4": {
+        "description": "Meta's open-source multimodal model with MoE architecture and 10M context window.",
+        "badges": ["Open Source", "Reasoning", "Multimodal"]
+      }
+    }
+  },
+  "chatHub": {
+    "modelsSidebar": "MODELS",
+    "searchPlaceholder": "Search 525 models...",
+    "loadingModels": "Loading models…",
+    "noModels": "No models found",
+    "welcomeTitle": "Welcome! I'm here to help you 👋",
+    "welcomeSubBefore": "No tech background needed. Tell me what you'd like to ",
+    "welcomeSubStrong": "achieve",
+    "welcomeSubAfter": " — I'll help you discover what's possible, step by step.",
+    "actionLabel": "WHAT WOULD YOU LIKE TO DO TODAY?",
+    "actionHint": "Or type anything below — there are no wrong answers ↓",
+    "inputPlaceholder": "Describe your project, ask a question, or just say hi — I'm here to help...",
+    "toolVoice": "Voice",
+    "toolAttach": "Attach",
+    "toolVideo": "Video",
+    "toolCode": "Code",
+    "toolDocument": "Document",
+    "toolImage": "Image",
+    "toolMore": "More",
+    "selectModel": "Select model",
+    "viewModelDetails": "View model details",
+    "sendTitle": "Send",
+    "clearChat": "Clear conversation",
+    "quickActions": "QUICK ACTIONS",
+    "sections": {
+      "navTools": "NAVIGATION & TOOLS",
+      "createGenerate": "CREATE & GENERATE",
+      "analyzeWrite": "ANALYZE & WRITE"
+    },
+    "tabs": {
+      "use_cases": "Use cases",
+      "monitor": "Monitor the situation",
+      "prototype": "Create a prototype",
+      "business": "Build a business plan",
+      "content": "Create content",
+      "research": "Analyze & research",
+      "learn": "Learn something"
+    },
+    "actionCards": {
+      "write": { "label": "Write content", "desc": "Emails, posts, stories" },
+      "images": { "label": "Create images", "desc": "Art, photos, designs" },
+      "build": { "label": "Build something", "desc": "Apps, tools, websites" },
+      "automate": { "label": "Automate work", "desc": "Save hours every week" },
+      "analyse": { "label": "Analyse data", "desc": "PDFs, sheets, reports" },
+      "explore": { "label": "Just exploring", "desc": "Show me what's possible" }
+    },
+    "quickItems": {
+      "browseMarketplace": "Browse Marketplace",
+      "buildAgent": "Build an Agent",
+      "howToGuide": "How to use Guide",
+      "promptEngineering": "Prompt Engineering",
+      "viewPricing": "View Pricing",
+      "modelsAnalysis": "AI Models Analysis",
+      "createImage": "Create image",
+      "generateAudio": "Generate Audio",
+      "createVideo": "Create video",
+      "createSlides": "Create slides",
+      "createInfographs": "Create Infographs",
+      "createQuiz": "Create quiz",
+      "createFlashcards": "Create Flashcards",
+      "createMindMap": "Create Mind map",
+      "analyzeData": "Analyze Data",
+      "writeContent": "Write content",
+      "codeGeneration": "Code Generation",
+      "documentAnalysis": "Document Analysis",
+      "translate": "Translate"
+    },
+    "bot": {
+      "matches": "Great question! I found {{count}} strong matches: {{names}}. The top pick is {{top}} with a {{score}}% match score. Click any model in the sidebar to learn more!",
+      "noMatches": "I couldn't find strong matches for that query. Try mentioning what you want to create — like \"generate images\", \"write code\", \"transcribe audio\", or \"translate content\".",
+      "noModelsLoaded": "Tell me more about your project and I'll recommend the best AI models for your needs!"
+    },
+    "tabPrompts": {
+      "use_cases": [
+        "Help me find the best AI model for my project",
+        "I want to build an AI chatbot for my website",
+        "Generate realistic images for my marketing campaign",
+        "Analyse documents and extract key information",
+        "Create AI agents for workflow automation",
+        "Add voice and speech recognition to my app"
+      ],
+      "monitor": [
+        "Set up real-time monitoring for my application",
+        "Track performance metrics and send alerts",
+        "Monitor social media sentiment for my brand",
+        "Create a system health dashboard with AI",
+        "Detect anomalies in my data streams",
+        "Build an alert system for key business metrics"
+      ],
+      "prototype": [
+        "Build a quick prototype for my app idea",
+        "Create a clickable mockup for my product",
+        "Generate a working demo from my concept",
+        "Scaffold a basic web app in minutes",
+        "Prototype a conversational AI interface",
+        "Build a no-code MVP with AI assistance"
+      ],
+      "business": [
+        "Create a comprehensive business plan for my startup",
+        "Develop a go-to-market strategy",
+        "Write a competitive analysis report",
+        "Build a financial projection model",
+        "Generate investor pitch deck content",
+        "Draft a product roadmap document"
+      ],
+      "content": [
+        "Write a blog post about AI trends",
+        "Create engaging social media copy",
+        "Generate product descriptions at scale",
+        "Draft a press release for my launch",
+        "Write email marketing sequences",
+        "Create video scripts and storyboards"
+      ],
+      "research": [
+        "Summarise the latest research on machine learning",
+        "Analyse a dataset and find key insights",
+        "Compare different AI models for my use case",
+        "Extract key points from multiple documents",
+        "Research competitors and market trends",
+        "Generate a literature review on a topic"
+      ],
+      "learn": [
+        "Explain how large language models work",
+        "Teach me prompt engineering best practices",
+        "Create a study plan for learning AI development",
+        "Give me a crash course on neural networks",
+        "Explain the difference between AI model types",
+        "Help me understand AI ethics and safety"
+      ]
+    }
+  },
+  "home": {
+    "badge": "AI Model Marketplace",
+    "heroLine1": "Find your perfect",
+    "heroHighlight": "AI model",
+    "heroLine2": "with guided discovery",
+    "heroSub": "You don't need to know anything about AI. Answer a few simple questions and we'll help you discover, compare, and deploy the right model for your use case.",
+    "ctaPrimary": "Let's go",
+    "ctaSecondary": "Skip — search directly",
+    "stats": {
+      "models": "{{count}} AI Models",
+      "builders": "{{count}} Builders",
+      "labs": "{{count}} AI Labs",
+      "rating": "{{rating}}⭐ Avg Rating"
+    },
+    "builderSection": "Built for every builder",
+    "flagshipTitle": "Flagship Model Comparison",
+    "flagshipCompare": "Compare all →",
+    "table": {
+      "model": "Model",
+      "lab": "Lab",
+      "context": "Context",
+      "input": "Input $/1M",
+      "output": "Output $/1M",
+      "multimodal": "Multimodal",
+      "speed": "Speed",
+      "bestFor": "Best For"
+    },
+    "flagshipNote": "* Prices shown are approximate. Free self-hosted models exclude infrastructure costs. Beta pricing may change.",
+    "trendingTitle": "🔥 Trending This Week",
+    "trendingLink": "View research feed →",
+    "labsTitle": "Browse by AI Lab",
+    "labsLink": "See all labs →",
+    "budgetTitle": "Find models by budget",
+    "useCaseTitle": "Quick-start by use case",
+    "featuredTitle": "Featured models",
+    "featuredBrowse": "Browse all {{count}}",
+    "newsletterTitle": "New models drop every week.\nDon't miss a release.",
+    "newsletterText": "Get a curated weekly digest: new model releases, benchmark comparisons, pricing changes, and prompt tips — straight to your inbox.",
+    "newsletterPlaceholder": "you@example.com",
+    "newsletterCta": "Subscribe free →",
+    "newsletterMeta": "No spam. Unsubscribe any time.",
+    "footerBrand": "NexusAI Model Marketplace",
+    "footerMeta": "New models, benchmark comparisons, pricing changes, and prompt tips.",
+    "footerModels": "Models",
+    "footerResearch": "Research",
+    "footerApi": "API",
+    "footerPrivacy": "Privacy",
+    "footerTerms": "Terms",
+    "cards": {
+      "builderFeatures": {
+        "guided-chat": {
+          "title": "Guided Discovery Chat",
+          "description": "Have a natural conversation about your goals and get model recommendations without touching a dropdown."
+        },
+        "prompt-guide": {
+          "title": "Prompt Engineering Guide",
+          "description": "Tailored prompt templates and principles for every model so your first request already feels pro-level."
+        },
+        "agent-builder": {
+          "title": "Agent Builder",
+          "description": "Step-by-step blueprints for creating production-ready AI agents — tools, memory, and deployment."
+        },
+        "flex-pricing": {
+          "title": "Flexible Pricing",
+          "description": "From free-tier to enterprise — compare cost per 1M tokens and pick the right fit for your budget."
+        },
+        "reviews": {
+          "title": "User Reviews & Ratings",
+          "description": "Real feedback, benchmark scores, and I/O specs to help you choose with confidence."
+        },
+        "research-feed": {
+          "title": "Research Feed",
+          "description": "Stay ahead with curated daily updates on new models, pricing changes, and breakthrough papers."
+        }
+      },
+      "budgets": {
+        "free": {
+          "label": "Free & Open Source",
+          "summary": "Llama 4 Maverick, DeepSeek-V3, DeepSeek-R1 — self-host with zero API cost.",
+          "countLabel": "6 models available →"
+        },
+        "budget": {
+          "label": "Budget — Under $0.50/1M",
+          "summary": "Gemini 3.1 Flash-Lite, Mistral Medium, Nemotron Nano — best performance per dollar.",
+          "countLabel": "9 models available →"
+        },
+        "mid": {
+          "label": "Mid-Range — $1–$5/1M",
+          "summary": "Claude Sonnet 4.6, GPT-5.4, Qwen3-Max — balanced price and capability.",
+          "countLabel": "11 models available →"
+        },
+        "premium": {
+          "label": "Premium — $5+/1M",
+          "summary": "Claude Opus 4.6, Sora 2 Pro, gpt-image-1.5 — top-tier quality for demanding workloads.",
+          "countLabel": "5 models available →"
+        }
+      },
+      "useCases": {
+        "code": {
+          "title": "Code Generation",
+          "cta": "Start building →"
+        },
+        "image": {
+          "title": "Image Generation",
+          "cta": "Create images →"
+        },
+        "agents": {
+          "title": "AI Agents",
+          "cta": "Build agents →"
+        },
+        "docs": {
+          "title": "Document Analysis",
+          "cta": "Analyse docs →"
+        },
+        "video": {
+          "title": "Video Generation",
+          "cta": "Create video →"
+        },
+        "audio": {
+          "title": "Voice & Audio",
+          "cta": "Add voice →"
+        },
+        "translate": {
+          "title": "Multilingual / Translation",
+          "cta": "Go multilingual →"
+        },
+        "research": {
+          "title": "Math & Research",
+          "cta": "Start researching →"
+        }
+      },
+      "featured": {
+        "claude-opus-46": {
+          "badge": "🆕 Just Released",
+          "tag": "Adaptive Thinking",
+          "description": "1M token context and adaptive thinking for complex reasoning, coding, and agentic workflows."
+        },
+        "gemini-31-pro": {
+          "badge": "🔥 Hot",
+          "tag": "Ultra-long context",
+          "description": "5M context with Thought Signatures for transparent deep reasoning and document analysis."
+        },
+        "gpt-54": {
+          "badge": "🤖 Computer Use",
+          "tag": "Agentic",
+          "description": "Built-in computer-use agents for autonomous browser, app, and file workflows."
+        }
+      },
+      "trending": {
+        "trend-claude": {
+          "badge": "🆕 Just Released",
+          "title": "Claude Opus 4.6 & Sonnet 4.6",
+          "description": "Adaptive Thinking and 1M token context (beta) mark a major leap in agent capability."
+        },
+        "trend-gemini": {
+          "badge": "🔥 Hot",
+          "title": "Gemini 3.1 Pro — Thought Signatures",
+          "description": "Thought Signatures add transparency to deep reasoning with a 5M token context window."
+        },
+        "trend-gpt54": {
+          "badge": "🤖 Computer Use",
+          "title": "GPT-5.4 — Native Computer-Use Agents",
+          "description": "Operate browsers, apps, and files autonomously with improved reasoning efficiency."
+        }
+      },
+      "flagship": {
+        "gpt-54-flagship": { "bestFor": "Computer-use agents, coding" },
+        "claude-opus-46-flagship": { "bestFor": "Reasoning, agents" },
+        "gemini-31-pro-flagship": { "bestFor": "Ultra-long docs" }
+      },
+      "labs": {
+        "openai": { "summary": "3 models · GPT-5.4, Sora 2" },
+        "anthropic": { "summary": "3 models · Opus, Sonnet, Haiku" },
+        "deepmind": { "summary": "5 models · Gemini 3.1, Veo 3" },
+        "xai": { "summary": "2 models · Grok-4-1, Grok-Imagine" },
+        "deepseek": { "summary": "3 models · V3, V3.2, R1" },
+        "meta": { "summary": "2 models · Maverick, Scout" },
+        "qwen": { "summary": "2 models · Qwen3-Max, Coder" },
+        "mistral": { "summary": "2 models · Devstral 2, Medium 3.1" },
+        "nvidia": { "summary": "4 models · Nemotron Ultra, Nano" },
+        "glm": { "summary": "3 models · GLM-5, 4.7, 4.6V" },
+        "moonshot": { "summary": "2 models · k2.5, k2-Thinking" }
+      }
+    }
+  }
+}

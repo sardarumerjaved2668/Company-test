@@ -4,30 +4,25 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
-
-const LANGUAGES = [
-  { code: 'EN', region: 'US', label: 'English' },
-  { code: 'AR', region: 'SA', label: 'العربية' },
-  { code: 'FR', region: 'FR', label: 'Français' },
-  { code: 'DE', region: 'DE', label: 'Deutsch' },
-  { code: 'ES', region: 'ES', label: 'Español' },
-  { code: 'PT', region: 'BR', label: 'Português' },
-  { code: 'ZH', region: 'CN', label: '中文' },
-  { code: 'JA', region: 'JP', label: '日本語' },
-  { code: 'KO', region: 'KR', label: '한국어' },
-];
+import { useLocale } from '../context/LocaleContext';
+import { UI_LANGUAGES } from '../i18n/locales';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
+  const { locale, setLocale, t } = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   const [langOpen, setLangOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState(LANGUAGES[0]);
 
-  const handleLogout = async () => { await logout(); router.push('/'); };
+  const activeLang = UI_LANGUAGES.find((l) => l.id === locale) || UI_LANGUAGES[0];
+
+  const handleLogout = async () => {
+    await logout();
+    router.push('/');
+  };
 
   const handleSelectLang = (lang) => {
-    setActiveLang(lang);
+    setLocale(lang.id);
     setLangOpen(false);
   };
 
@@ -45,16 +40,16 @@ export default function Navbar() {
         <div className="nav-actions">
           <div className="nav-links">
             <Link href="/chat-hub" className={`nav-link${pathname === '/chat-hub' ? ' nav-link-active' : ''}`}>
-              💬 Chat Hub
+              {t('nav.chatHub')}
             </Link>
             <Link href="/marketplace" className={`nav-link${pathname === '/marketplace' ? ' nav-link-active' : ''}`}>
-              🛍 Marketplace
+              {t('nav.marketplace')}
             </Link>
             <Link href="/agents" className={`nav-link${pathname === '/agents' ? ' nav-link-active' : ''}`}>
-              🤖 Agents
+              {t('nav.agents')}
             </Link>
             <Link href="/discover-new" className={`nav-link${pathname === '/discover-new' ? ' nav-link-active' : ''}`}>
-              🔬 Discover New
+              {t('nav.discoverNew')}
             </Link>
           </div>
 
@@ -69,12 +64,12 @@ export default function Navbar() {
             </button>
             {langOpen && (
               <div className="nav-lang-menu">
-                <div className="nav-lang-header">APP LANGUAGE</div>
-                {LANGUAGES.map((lang) => (
+                <div className="nav-lang-header">{t('nav.appLanguage')}</div>
+                {UI_LANGUAGES.map((lang) => (
                   <button
-                    key={lang.code}
+                    key={lang.id}
                     type="button"
-                    className={`nav-lang-item${lang.code === activeLang.code ? ' nav-lang-item-active' : ''}`}
+                    className={`nav-lang-item${lang.id === activeLang.id ? ' nav-lang-item-active' : ''}`}
                     onClick={() => handleSelectLang(lang)}
                   >
                     <span className="nav-lang-region">{lang.region}</span>
@@ -91,18 +86,18 @@ export default function Navbar() {
           {user ? (
             <>
               <Link href="/dashboard" className={`nav-link${pathname === '/dashboard' ? ' nav-link-active' : ''}`}>
-                Dashboard
+                {t('nav.dashboard')}
               </Link>
               <div className="nav-user">
                 <div className="nav-avatar">{user.name.charAt(0).toUpperCase()}</div>
                 <span className="nav-username">{user.name}</span>
               </div>
-              <button className="btn-nav-logout" onClick={handleLogout}>Logout</button>
+              <button type="button" className="btn-nav-logout" onClick={handleLogout}>{t('nav.logout')}</button>
             </>
           ) : (
             <>
-              <Link href="/login" className={`nav-link${pathname === '/login' ? ' nav-link-active' : ''}`}>Sign in</Link>
-              <Link href="/marketplace?model=gpt5&details=1" className="btn-nav-cta">Try free →</Link>
+              <Link href="/login" className={`nav-link${pathname === '/login' ? ' nav-link-active' : ''}`}>{t('nav.signIn')}</Link>
+              <Link href="/marketplace?model=gpt5&details=1" className="btn-nav-cta">{t('nav.tryFree')}</Link>
             </>
           )}
         </div>

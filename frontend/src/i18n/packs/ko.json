@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "chatHub": "💬 채팅 허브",
+    "marketplace": "🛍 마켓플레이스",
+    "agents": "🤖 에이전트",
+    "discoverNew": "🔬 새로운 발견",
+    "appLanguage": "앱 언어",
+    "dashboard": "대시보드",
+    "logout": "로그아웃",
+    "signIn": "로그인",
+    "tryFree": "무료로 체험 →"
+  },
+  "auth": {
+    "login": {
+      "title": "다시 오신 것을 환영합니다",
+      "subtitle": "로그인하여 추천을 저장하고 대시보드를 이용하세요.",
+      "signIn": "로그인",
+      "noAccount": "계정이 없으신가요?",
+      "createOne": "가입하기"
+    },
+    "register": {
+      "title": "계정 만들기",
+      "subtitle": "NexusAI-DB에 가입해 추천과 기록을 저장하세요.",
+      "createAccount": "계정 만들기",
+      "haveAccount": "이미 계정이 있으신가요?",
+      "signInLink": "로그인"
+    }
+  },
+  "home": {
+    "badge": "AI 모델 마켓플레이스",
+    "heroLine1": "당신에게 맞는",
+    "heroHighlight": "AI 모델",
+    "heroLine2": "을 안내형 탐색으로 찾기",
+    "heroSub": "AI를 몰라도 괜찮습니다. 간단한 질문에 답하면 사용 사례에 맞는 모델을 찾고 비교하고 배포하도록 도와드립니다.",
+    "ctaPrimary": "시작하기",
+    "ctaSecondary": "건너뛰기 — 바로 검색",
+    "builderSection": "모든 빌더를 위해",
+    "flagshipTitle": "플래그십 모델 비교",
+    "trendingTitle": "🔥 이번 주 트렌드",
+    "labsTitle": "AI 랩별 둘러보기",
+    "budgetTitle": "예산별 모델",
+    "useCaseTitle": "사용 사례별 빠른 시작",
+    "featuredTitle": "추천 모델",
+    "newsletterTitle": "매주 새 모델이 올라옵니다.\n출시를 놓치지 마세요.",
+    "footerBrand": "NexusAI 모델 마켓플레이스"
+  },
+  "recommend": {
+    "panelLabel": "안내형 탐색",
+    "title": "입력란을 눌러 필요한 것을 설명하세요",
+    "subtitle": "완벽한 키워드가 없어도 됩니다. 하고 싶은 일만 적어 주세요 — 나머지는 저희가 도와드립니다.",
+    "go": "시작하기",
+    "working": "처리 중…"
+  },
+  "chatLauncher": {
+    "fabLabel": "채팅 허브",
+    "title": "안내형 탐색 채팅",
+    "subtitle": "무엇을 하고 싶은지 알려주시면 적합한 모델을 찾도록 도와드립니다.",
+    "send": "보내기"
+  },
+  "marketplace": {
+    "titleModel": "모델",
+    "titleHighlight": "마켓플레이스",
+    "subtitle": "최신 모델을 검색·비교: 랩, 가격, 역량.",
+    "pillModels": "525+ 모델",
+    "pillUpdated": "매일 업데이트",
+    "searchPlaceholder": "모델, 역량 검색…",
+    "helpTitle": "선택이 어려우신가요?",
+    "openChatHub": "채팅 허브 열기 →",
+    "emptyTitle": "모델을 찾을 수 없습니다",
+    "loading": "마켓플레이스 로딩 중…"
+  },
+  "chatHub": {
+    "modelsSidebar": "모델",
+    "welcomeTitle": "환영합니다! 도와드릴게요 👋",
+    "quickActions": "빠른 작업"
+  },
+  "agents": {
+    "title": "에이전트 빌더",
+    "subtitle": "어떤 모델로든 강력한 AI 에이전트를 만드세요. 템플릿을 고르거나 처음부터 시작하세요.",
+    "newAgent": "+ 새 에이전트",
+    "templatesTitle": "에이전트 템플릿"
+  },
+  "discover": {
+    "title": "AI 연구 피드"
+  },
+  "dashboard": {
+    "title": "대시보드",
+    "welcomeBack": "다시 오신 것을 환영합니다,",
+    "profile": "프로필"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "chatHub": "💬 チャットハブ",
+    "marketplace": "🛍 マーケットプレイス",
+    "agents": "🤖 エージェント",
+    "discoverNew": "🔬 新着を見る",
+    "appLanguage": "アプリの言語",
+    "dashboard": "ダッシュボード",
+    "logout": "ログアウト",
+    "signIn": "ログイン",
+    "tryFree": "無料で試す →"
+  },
+  "auth": {
+    "login": {
+      "title": "おかえりなさい",
+      "subtitle": "ログインしておすすめを保存し、ダッシュボードにアクセスします。",
+      "signIn": "ログイン",
+      "noAccount": "アカウントをお持ちでないですか？",
+      "createOne": "新規登録"
+    },
+    "register": {
+      "title": "アカウントを作成",
+      "subtitle": "NexusAI-DB に参加しておすすめと履歴を保存しましょう。",
+      "createAccount": "アカウント作成",
+      "haveAccount": "すでにアカウントをお持ちですか？",
+      "signInLink": "ログイン"
+    }
+  },
+  "home": {
+    "badge": "AI モデル マーケットプレイス",
+    "heroLine1": "あなたに最適な",
+    "heroHighlight": "AI モデル",
+    "heroLine2": "をガイド付きで見つける",
+    "heroSub": "AI の知識は不要です。いくつかの質問に答えるだけで、用途に合うモデルの発見・比較・導入をサポートします。",
+    "ctaPrimary": "はじめる",
+    "ctaSecondary": "スキップ — 直接検索",
+    "builderSection": "すべてのビルダーのために",
+    "flagshipTitle": "フラッグシップモデル比較",
+    "trendingTitle": "🔥 今週のトレンド",
+    "labsTitle": "AI ラボから探す",
+    "budgetTitle": "予算別のモデル",
+    "useCaseTitle": "ユースケースでクイックスタート",
+    "featuredTitle": "注目モデル",
+    "newsletterTitle": "毎週新モデルが追加されます。\nリリースを見逃さないで。",
+    "footerBrand": "NexusAI モデル マーケットプレイス"
+  },
+  "recommend": {
+    "panelLabel": "ガイド付き発見",
+    "title": "欄をクリックしてやりたいことを入力",
+    "subtitle": "キーワードは完璧でなくて大丈夫。やりたいことを書くだけで、あとはお任せください。",
+    "go": "はじめる",
+    "working": "処理中…"
+  },
+  "chatLauncher": {
+    "fabLabel": "チャットハブ",
+    "title": "ガイド付き発見チャット",
+    "subtitle": "やりたいことを教えてください。適したモデルを見つけるお手伝いをします。",
+    "send": "送信"
+  },
+  "marketplace": {
+    "titleModel": "モデル",
+    "titleHighlight": "マーケットプレイス",
+    "subtitle": "最先端モデルを検索・比較：ラボ、料金、能力。",
+    "pillModels": "525+ モデル",
+    "pillUpdated": "毎日更新",
+    "searchPlaceholder": "モデルや能力を検索…",
+    "helpTitle": "選び方がわからない？",
+    "openChatHub": "チャットハブを開く →",
+    "emptyTitle": "モデルが見つかりません",
+    "loading": "マーケットを読み込み中…"
+  },
+  "chatHub": {
+    "modelsSidebar": "モデル",
+    "welcomeTitle": "ようこそ！お手伝いします 👋",
+    "quickActions": "クイックアクション"
+  },
+  "agents": {
+    "title": "エージェントビルダー",
+    "subtitle": "任意のモデルで強力な AI エージェントを作成。テンプレートを選ぶか一から始められます。",
+    "newAgent": "+ 新規エージェント",
+    "templatesTitle": "エージェントテンプレート"
+  },
+  "discover": {
+    "title": "AI 研究フィード"
+  },
+  "dashboard": {
+    "title": "ダッシュボード",
+    "welcomeBack": "おかえりなさい、",
+    "profile": "プロフィール"
+  }
+}

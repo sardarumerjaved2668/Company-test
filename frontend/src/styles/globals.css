@@ -2216,6 +2216,12 @@ main{
 
 /* Messages */
 .nxc-messages{padding:20px 20px 8px;display:flex;flex-direction:column;gap:14px;}
+.nxc-chat-toolbar{display:flex;justify-content:flex-end;margin:-4px 0 4px;}
+.nxc-clear-chat-btn{
+  font-size:11px;font-weight:600;color:#9E9B93;background:transparent;border:1px solid rgba(28,26,22,.12);
+  padding:6px 12px;border-radius:8px;cursor:pointer;transition:color .15s,border-color .15s,background .15s;
+}
+.nxc-clear-chat-btn:hover{color:#C8622A;border-color:rgba(200,98,42,.35);background:rgba(200,98,42,.06);}
 .nxc-msg{
   display:flex;align-items:flex-start;gap:10px;
   animation:nxcFadeUp .28s ease both;

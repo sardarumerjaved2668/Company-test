@@ -2,15 +2,35 @@
 
 import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useLocale } from '../../context/LocaleContext';
 
 /* ── Static data ─────────────────────────────────────────────── */
-const FILTER_TABS = [
-  'All Labs', 'OpenAI', 'Anthropic', 'Google DeepMind',
-  'Meta', 'Mistral', 'Cohere', 'Microsoft', 'Amazon',
+const LAB_FILTER_IDS = [
+  'allLabs', 'openai', 'anthropic', 'googleDeepMind',
+  'meta', 'mistral', 'cohere', 'microsoft', 'amazon',
 ];
+
+const LAB_FILTER_NEEDLE = {
+  allLabs: null,
+  openai: 'openai',
+  anthropic: 'anthropic',
+  googleDeepMind: 'google deepmind',
+  meta: 'meta',
+  mistral: 'mistral',
+  cohere: 'cohere',
+  microsoft: 'microsoft',
+  amazon: 'amazon',
+};
+
+function labFilterMatches(model, filterId) {
+  const needle = LAB_FILTER_NEEDLE[filterId];
+  if (!needle) return true;
+  return model.provider.toLowerCase().includes(needle);
+}
 
 const PROVIDERS     = ['OpenAI', 'Anthropic', 'Google DeepMind', 'Meta'];
 const PRICING_TYPES = ['Pay-per-use', 'Subscription', 'Free tier'];
+const PRICING_MSG_KEYS = ['payPerUse', 'subscription', 'freeTier'];
 
 const TAG_CLASSES = {
   'Premium':        'mkc-tag-premium',
@@ -160,8 +180,13 @@ const MOCK_MODELS = [
 
 /* ── ModelCard ───────────────────────────────────────────────── */
 function MkCard({ model, onOpen }) {
+  const { messages } = useLocale();
   const color  = PROVIDER_COLORS[model.provider] || '#C8622A';
   const tagCls = TAG_CLASSES[model.tag] || 'mkc-tag-popular';
+  const loc = messages.marketplace?.models?.[model.id];
+  const description = loc?.description || model.description;
+  const badges = loc?.badges || model.badges;
+  const tagLabel = messages.marketplace?.tags?.[model.tag] || model.tag;
 
   return (
     <article
@@ -177,13 +202,15 @@ function MkCard({ model, onOpen }) {
           <div className="mkc-name">{model.name}</div>
           <div className="mkc-prov">{model.provider}</div>
         </div>
-        <span className={`mkc-tag ${tagCls}`}>{model.tag}</span>
+        <span className={`mkc-tag ${tagCls}`}>{tagLabel}</span>
       </div>
 
-      <p className="mkc-desc">{model.description}</p>
+      <p className="mkc-desc">{description}</p>
 
       <div className="mkc-chips">
-        {model.badges.map(b => <span key={b} className="mkc-chip">{b}</span>)}
+        {badges.map((b) => (
+          <span key={b} className="mkc-chip">{messages.marketplace?.tags?.[b] || b}</span>
+        ))}
       </div>
 
       <div className="mkc-foot">
@@ -200,8 +227,13 @@ function MkCard({ model, onOpen }) {
 
 /* ── Detail Modal ────────────────────────────────────────────── */
 function MkModal({ model, onClose }) {
+  const { t, messages } = useLocale();
   const color  = PROVIDER_COLORS[model.provider] || '#C8622A';
   const tagCls = TAG_CLASSES[model.tag] || 'mkc-tag-popular';
+  const loc = messages.marketplace?.models?.[model.id];
+  const description = loc?.description || model.description;
+  const badges = loc?.badges || model.badges;
+  const tagLabel = messages.marketplace?.tags?.[model.tag] || model.tag;
 
   return (
     <div
@@ -211,49 +243,51 @@ function MkModal({ model, onClose }) {
       onClick={e => e.target === e.currentTarget && onClose()}
     >
       <div className="modal-panel">
-        <button type="button" className="modal-close" onClick={onClose} aria-label="Close">×</button>
+        <button type="button" className="modal-close" onClick={onClose} aria-label={t('marketplace.modalClose')}>×</button>
         <div className="modal-body">
           <div className="modal-hero">
             <div className="modal-icon" style={{ background: `${color}1a`, color, fontSize: 28 }}>⚡</div>
             <div className="modal-title-group">
               <h2 className="modal-model-name">{model.name}</h2>
               <div className="modal-provider-row">
-                <span className="modal-provider-name">by {model.provider}</span>
-                <span className={`mkc-tag ${tagCls}`}>{model.tag}</span>
-                <span className="modal-badge badge-api">API Available</span>
+                <span className="modal-provider-name">{t('marketplace.modalBy')} {model.provider}</span>
+                <span className={`mkc-tag ${tagCls}`}>{tagLabel}</span>
+                <span className="modal-badge badge-api">{t('marketplace.apiAvailable')}</span>
               </div>
             </div>
           </div>
 
           <section className="modal-section">
-            <h3 className="modal-section-title">About this model</h3>
-            <p className="modal-description">{model.description}</p>
+            <h3 className="modal-section-title">{t('marketplace.aboutModel')}</h3>
+            <p className="modal-description">{description}</p>
           </section>
 
           <section className="modal-section">
-            <h3 className="modal-section-title">Capabilities</h3>
+            <h3 className="modal-section-title">{t('marketplace.capabilities')}</h3>
             <div className="modal-categories">
-              {model.badges.map(b => <span key={b} className="modal-cat-badge">{b}</span>)}
+              {badges.map((b) => (
+                <span key={b} className="modal-cat-badge">{messages.marketplace?.tags?.[b] || b}</span>
+              ))}
             </div>
           </section>
 
           <section className="modal-section">
-            <h3 className="modal-section-title">Pricing</h3>
+            <h3 className="modal-section-title">{t('marketplace.pricing')}</h3>
             <div className="info-grid">
               <div className="info-item">
-                <div className="info-item-label">Input</div>
+                <div className="info-item-label">{t('marketplace.input')}</div>
                 <div className="info-item-value">{model.inputPrice}</div>
               </div>
               <div className="info-item">
-                <div className="info-item-label">Output</div>
+                <div className="info-item-label">{t('marketplace.output')}</div>
                 <div className="info-item-value">{model.outputPrice}</div>
               </div>
               <div className="info-item">
-                <div className="info-item-label">Rating</div>
+                <div className="info-item-label">{t('marketplace.rating')}</div>
                 <div className="info-item-value">★ {model.rating}</div>
               </div>
               <div className="info-item">
-                <div className="info-item-label">Reviews</div>
+                <div className="info-item-label">{t('marketplace.reviews')}</div>
                 <div className="info-item-value">{model.reviews}</div>
               </div>
             </div>
@@ -264,11 +298,25 @@ function MkModal({ model, onClose }) {
   );
 }
 
+const PROVIDER_MSG_KEYS = {
+  OpenAI: 'openai',
+  Anthropic: 'anthropic',
+  'Google DeepMind': 'googleDeepMind',
+  Meta: 'meta',
+};
+
+function providerLabel(p, messages) {
+  const k = PROVIDER_MSG_KEYS[p];
+  if (k && messages.marketplace?.providers?.[k]) return messages.marketplace.providers[k];
+  return p;
+}
+
 /* ── Inner (uses useSearchParams — must be inside Suspense) ───── */
 function MarketplaceInner() {
   const router       = useRouter();
   const searchParams = useSearchParams();
-  const [activeLab, setActiveLab]           = useState(FILTER_TABS[0]);
+  const { t, messages } = useLocale();
+  const [activeLabFilter, setActiveLabFilter] = useState('allLabs');
   const [search, setSearch]                 = useState('');
   const [activeProvider, setActiveProvider] = useState(null);
   const [activePricing, setActivePricing]   = useState(null);
@@ -285,16 +333,15 @@ function MarketplaceInner() {
 
   const filteredModels = useMemo(() => {
     const term = search.trim().toLowerCase();
-    return MOCK_MODELS.filter(model => {
-      const matchesTab  = activeLab === FILTER_TABS[0] ||
-        model.provider.toLowerCase().includes(activeLab.toLowerCase());
+    return MOCK_MODELS.filter((model) => {
+      const matchesTab = labFilterMatches(model, activeLabFilter);
       const matchesProv = !activeProvider || model.provider === activeProvider;
       if (!matchesTab || !matchesProv) return false;
       if (!term) return true;
       return [model.name, model.provider, model.description, ...model.badges]
         .join(' ').toLowerCase().includes(term);
     });
-  }, [activeLab, search, activeProvider]);
+  }, [activeLabFilter, search, activeProvider]);
 
   const openDetails = model => {
     setModalModel(model);
@@ -314,16 +361,16 @@ function MarketplaceInner() {
         <header className="mk-header">
           <div>
             <h1 className="mk-title">
-              <span>Model </span>
-              <span className="mk-title-hl">Marketplace</span>
+              <span>{t('marketplace.titleModel')} </span>
+              <span className="mk-title-hl">{t('marketplace.titleHighlight')}</span>
             </h1>
             <p className="mk-sub">
-              Search and compare frontier models across labs, pricing tiers, and capabilities.
+              {t('marketplace.subtitle')}
             </p>
           </div>
           <div className="mk-header-meta">
-            <span className="mk-pill">525+ models</span>
-            <span className="mk-pill mk-pill-soft">Updated daily</span>
+            <span className="mk-pill">{t('marketplace.pillModels')}</span>
+            <span className="mk-pill mk-pill-soft">{t('marketplace.pillUpdated')}</span>
           </div>
         </header>
 
@@ -334,21 +381,21 @@ function MarketplaceInner() {
             <input
               className="mk-search-input"
               type="text"
-              placeholder="Search models, capabilities..."
+              placeholder={t('marketplace.searchPlaceholder')}
               value={search}
               onChange={e => setSearch(e.target.value)}
             />
           </div>
 
           <div className="mk-filter-chips">
-            {FILTER_TABS.map(label => (
+            {LAB_FILTER_IDS.map((fid) => (
               <button
-                key={label}
+                key={fid}
                 type="button"
-                className={`mk-filter-chip${activeLab === label ? ' mk-filter-chip-active' : ''}`}
-                onClick={() => { setActiveLab(label); setActiveProvider(null); }}
+                className={`mk-filter-chip${activeLabFilter === fid ? ' mk-filter-chip-active' : ''}`}
+                onClick={() => { setActiveLabFilter(fid); setActiveProvider(null); }}
               >
-                {label}
+                {t(`marketplace.filters.${fid}`)}
               </button>
             ))}
           </div>
@@ -360,26 +407,26 @@ function MarketplaceInner() {
           {/* Left rail */}
           <aside className="mk-left-rail">
             <div className="mk-help-card">
-              <h2>Need help choosing?</h2>
+              <h2>{t('marketplace.helpTitle')}</h2>
               <p>
-                Chat with our AI guide for a personalised model recommendation in under 60 seconds.
+                {t('marketplace.helpText')}
               </p>
               <button type="button" className="mk-help-btn" onClick={() => router.push('/chat-hub')}>
-                Open Chat Hub →
+                {t('marketplace.openChatHub')}
               </button>
             </div>
 
             <div className="mk-filter-section">
-              <h3>PROVIDER</h3>
+              <h3>{t('marketplace.providerHeading')}</h3>
               <ul>
-                {PROVIDERS.map(p => (
+                {PROVIDERS.map((p) => (
                   <li key={p}>
                     <button
                       type="button"
                       className={`mk-filter-item${activeProvider === p ? ' mk-filter-item-on' : ''}`}
-                      onClick={() => setActiveProvider(prev => prev === p ? null : p)}
+                      onClick={() => setActiveProvider((prev) => (prev === p ? null : p))}
                     >
-                      {p}
+                      {providerLabel(p, messages)}
                     </button>
                   </li>
                 ))}
@@ -387,16 +434,16 @@ function MarketplaceInner() {
             </div>
 
             <div className="mk-filter-section">
-              <h3>PRICING MODEL</h3>
+              <h3>{t('marketplace.pricingHeading')}</h3>
               <ul>
-                {PRICING_TYPES.map(p => (
+                {PRICING_TYPES.map((p, i) => (
                   <li key={p}>
                     <button
                       type="button"
                       className={`mk-filter-item${activePricing === p ? ' mk-filter-item-on' : ''}`}
-                      onClick={() => setActivePricing(prev => prev === p ? null : p)}
+                      onClick={() => setActivePricing((prev) => (prev === p ? null : p))}
                     >
-                      {p}
+                      {t(`marketplace.pricingTypes.${PRICING_MSG_KEYS[i]}`)}
                     </button>
                   </li>
                 ))}
@@ -409,8 +456,8 @@ function MarketplaceInner() {
             {filteredModels.length === 0 ? (
               <div className="empty-state" style={{ gridColumn: '1 / -1' }}>
                 <div className="empty-state-icon">🔍</div>
-                <h3>No models found</h3>
-                <p>Try a different search term or filter.</p>
+                <h3>{t('marketplace.emptyTitle')}</h3>
+                <p>{t('marketplace.emptyHint')}</p>
               </div>
             ) : (
               filteredModels.map(model => (
@@ -426,14 +473,19 @@ function MarketplaceInner() {
   );
 }
 
+function MarketplaceLoading() {
+  const { t } = useLocale();
+  return (
+    <div style={{ padding: '60px 24px', textAlign: 'center', color: '#9ca3af', fontSize: 14 }}>
+      {t('marketplace.loading')}
+    </div>
+  );
+}
+
 /* ── Default export with Suspense boundary ───────────────────── */
 export default function MarketplacePage() {
   return (
-    <Suspense fallback={
-      <div style={{ padding: '60px 24px', textAlign: 'center', color: '#9ca3af', fontSize: 14 }}>
-        Loading marketplace…
-      </div>
-    }>
+    <Suspense fallback={<MarketplaceLoading />}>
       <MarketplaceInner />
     </Suspense>
   );

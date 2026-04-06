@@ -1,68 +1,24 @@
 'use client';
 
+import { useLocale } from '../../context/LocaleContext';
+
 const FEED_ITEMS = [
-  {
-    id: 1,
-    month: 'MAR',
-    day: '26',
-    lab: 'Google DeepMind',
-    title: 'Gemini 2.5 Pro achieves new SOTA on reasoning benchmarks',
-    summary:
-      'Scores 82.3% on AIME 2025 math competition, outperforming all prior models on reasoning‑intensive tasks.',
-  },
-  {
-    id: 2,
-    month: 'MAR',
-    day: '22',
-    lab: 'MIT CSAIL',
-    title: 'Scaling laws for multimodal models: new empirical findings',
-    summary:
-      'Research reveals unexpected scaling dynamics when combining vision and language — efficiency gains plateau earlier than expected.',
-  },
-  {
-    id: 3,
-    month: 'MAR',
-    day: '18',
-    lab: 'Anthropic',
-    title: 'Constitutional AI v2: improved alignment through iterative refinement',
-    summary:
-      'New methodology achieves 40% reduction in harmful outputs while preserving capability on standard benchmarks.',
-  },
-  {
-    id: 4,
-    month: 'MAR',
-    day: '15',
-    lab: 'Nexus AI',
-    title: 'Llama 4 Scout & Maverick: natively multimodal from the ground up',
-    summary:
-      '17B MoE architecture trained on 40 trillion tokens with native understanding across text, images, and audio.',
-  },
-  {
-    id: 5,
-    month: 'MAR',
-    day: '10',
-    lab: 'Stanford NLP',
-    title: 'Long‑context recall: how models handle 1M+ token windows',
-    summary:
-      'Comprehensive evaluation shows sharp recall degradation beyond 200K tokens for most frontier models.',
-  },
-  {
-    id: 6,
-    month: 'FEB',
-    day: '5',
-    lab: 'DeepSeek‑R1',
-    title: 'DeepSeek‑R1 open weights: reproducing frontier reasoning at minimal cost',
-    summary:
-      'Full weight release enables fine‑tuning for domain‑specific reasoning at a fraction of frontier model prices.',
-  },
+  { id: 1, month: 'MAR', day: '26', lab: 'Google DeepMind' },
+  { id: 2, month: 'MAR', day: '22', lab: 'MIT CSAIL' },
+  { id: 3, month: 'MAR', day: '18', lab: 'Anthropic' },
+  { id: 4, month: 'MAR', day: '15', lab: 'Nexus AI' },
+  { id: 5, month: 'MAR', day: '10', lab: 'Stanford NLP' },
+  { id: 6, month: 'FEB', day: '5', lab: 'DeepSeek‑R1' },
 ];
 
 export default function DiscoverNewPage() {
+  const { t } = useLocale();
+
   return (
     <main>
       <div className="app-wrapper mk-app-full">
         <header className="dn-header">
-          <h1 className="dn-title">AI Research Feed</h1>
+          <h1 className="dn-title">{t('discover.title')}</h1>
         </header>
 
         <section className="dn-feed">
@@ -74,8 +30,8 @@ export default function DiscoverNewPage() {
               </div>
               <div className="dn-card-main">
                 <div className="dn-card-lab">{item.lab}</div>
-                <h2 className="dn-card-title">{item.title}</h2>
-                <p className="dn-card-summary">{item.summary}</p>
+                <h2 className="dn-card-title">{t(`discover.items.${item.id}.title`)}</h2>
+                <p className="dn-card-summary">{t(`discover.items.${item.id}.summary`)}</p>
               </div>
             </article>
           ))}
@@ -84,4 +40,3 @@ export default function DiscoverNewPage() {
     </main>
   );
 }
-

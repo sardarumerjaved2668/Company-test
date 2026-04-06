@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "chatHub": "💬 对话中心",
+    "marketplace": "🛍 模型市场",
+    "agents": "🤖 智能体",
+    "discoverNew": "🔬 发现新品",
+    "appLanguage": "应用语言",
+    "dashboard": "控制台",
+    "logout": "退出登录",
+    "signIn": "登录",
+    "tryFree": "免费试用 →"
+  },
+  "auth": {
+    "login": {
+      "title": "欢迎回来",
+      "subtitle": "登录以保存推荐并访问控制台。",
+      "signIn": "登录",
+      "noAccount": "还没有账号？",
+      "createOne": "立即注册"
+    },
+    "register": {
+      "title": "创建账号",
+      "subtitle": "加入 NexusAI-DB，保存推荐与历史记录。",
+      "createAccount": "创建账号",
+      "haveAccount": "已有账号？",
+      "signInLink": "登录"
+    }
+  },
+  "home": {
+    "badge": "AI 模型市场",
+    "heroLine1": "找到最适合你的",
+    "heroHighlight": "AI 模型",
+    "heroLine2": "通过引导式发现",
+    "heroSub": "你不必懂 AI。只需回答几个简单问题，我们就能帮你发现、比较并部署适合场景的模型。",
+    "ctaPrimary": "开始",
+    "ctaSecondary": "跳过 — 直接搜索",
+    "builderSection": "为每位构建者打造",
+    "flagshipTitle": "旗舰模型对比",
+    "trendingTitle": "🔥 本周热门",
+    "labsTitle": "按 AI 实验室浏览",
+    "budgetTitle": "按预算找模型",
+    "useCaseTitle": "按使用场景快速开始",
+    "featuredTitle": "精选模型",
+    "newsletterTitle": "每周都有新模型上线。\n别错过更新。",
+    "footerBrand": "NexusAI 模型市场"
+  },
+  "recommend": {
+    "panelLabel": "引导发现",
+    "title": "点击输入框，描述你的需求",
+    "subtitle": "不必纠结关键词。直接描述你想做什么，其余交给我们。",
+    "go": "开始",
+    "working": "处理中…"
+  },
+  "chatLauncher": {
+    "fabLabel": "对话中心",
+    "title": "引导式发现对话",
+    "subtitle": "告诉我们你的目标，我们帮你找到合适的模型。",
+    "send": "发送"
+  },
+  "marketplace": {
+    "titleModel": "模型",
+    "titleHighlight": "市场",
+    "subtitle": "搜索并对比前沿模型：实验室、定价与能力。",
+    "pillModels": "525+ 模型",
+    "pillUpdated": "每日更新",
+    "searchPlaceholder": "搜索模型、能力…",
+    "helpTitle": "不知道选哪个？",
+    "openChatHub": "打开对话中心 →",
+    "emptyTitle": "未找到模型",
+    "loading": "正在加载市场…"
+  },
+  "chatHub": {
+    "modelsSidebar": "模型",
+    "welcomeTitle": "欢迎！我来帮你 👋",
+    "quickActions": "快捷操作"
+  },
+  "agents": {
+    "title": "智能体构建器",
+    "subtitle": "用任意模型创建强大的 AI 智能体。选择模板或从零开始。",
+    "newAgent": "+ 新建智能体",
+    "templatesTitle": "智能体模板"
+  },
+  "discover": {
+    "title": "AI 研究动态"
+  },
+  "dashboard": {
+    "title": "控制台",
+    "welcomeBack": "欢迎回来，",
+    "profile": "个人资料"
+  }
+}

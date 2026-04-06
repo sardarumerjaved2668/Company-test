@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAuth } from '../../hooks/useAuth';
+import { useLocale } from '../../context/LocaleContext';
 
-export default function LoginPage() {
+function LoginInner() {
   const { login } = useAuth();
+  const { t } = useLocale();
   const router = useRouter();
   const params = useSearchParams();
   const from = params.get('from') || '/';
@@ -17,12 +19,13 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); setLoading(true);
+    setError('');
+    setLoading(true);
     try {
       await login(form.email, form.password);
       router.push(from);
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please try again.');
+      setError(err.response?.data?.message || t('auth.login.loginFailed'));
     } finally { setLoading(false); }
   };
 
@@ -36,27 +39,35 @@ export default function LoginPage() {
           </span>
         </div>
 
-        <h1 className="auth-title">Welcome back</h1>
-        <p className="auth-subtitle">Sign in to save recommendations and access your dashboard.</p>
+        <h1 className="auth-title">{t('auth.login.title')}</h1>
+        <p className="auth-subtitle">{t('auth.login.subtitle')}</p>
 
         {error && <div className="auth-error">{error}</div>}
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <div className="form-group">
-            <label className="form-label">Email</label>
-            <input type="email" className="form-input" placeholder="you@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required autoComplete="email" />
+            <label className="form-label" htmlFor="login-email">{t('auth.login.email')}</label>
+            <input id="login-email" type="email" className="form-input" placeholder="you@example.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required autoComplete="email" />
           </div>
           <div className="form-group">
-            <label className="form-label">Password</label>
-            <input type="password" className="form-input" placeholder="••••••••" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required autoComplete="current-password" />
+            <label className="form-label" htmlFor="login-password">{t('auth.login.password')}</label>
+            <input id="login-password" type="password" className="form-input" placeholder="••••••••" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required autoComplete="current-password" />
           </div>
           <button type="submit" className="btn-auth" disabled={loading}>
-            {loading ? <><div className="spinner spinner-dark" /> Signing in...</> : 'Sign In'}
+            {loading ? <><div className="spinner spinner-dark" /> {t('auth.login.signingIn')}</> : t('auth.login.signIn')}
           </button>
         </form>
 
-        <p className="auth-switch">Don&apos;t have an account? <Link href="/register" className="auth-link">Create one</Link></p>
+        <p className="auth-switch">{t('auth.login.noAccount')} <Link href="/register" className="auth-link">{t('auth.login.createOne')}</Link></p>
       </div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="auth-page"><div className="auth-card"><div className="auth-spinner" /></div></div>}>
+      <LoginInner />
+    </Suspense>
   );
 }

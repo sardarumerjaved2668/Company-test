@@ -1,0 +1,340 @@
+{
+  "nav": {
+    "chatHub": "💬 Hub discussion",
+    "marketplace": "🛍 Marketplace",
+    "agents": "🤖 Agents",
+    "discoverNew": "🔬 Nouveautés",
+    "appLanguage": "LANGUE DE L’APP",
+    "dashboard": "Tableau de bord",
+    "logout": "Déconnexion",
+    "signIn": "Connexion",
+    "tryFree": "Essayer gratuitement →"
+  },
+  "auth": {
+    "login": {
+      "title": "Bon retour",
+      "subtitle": "Connectez-vous pour enregistrer vos recommandations et accéder au tableau de bord.",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "signingIn": "Connexion…",
+      "signIn": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "createOne": "Créer un compte",
+      "loginFailed": "Échec de la connexion. Réessayez."
+    },
+    "register": {
+      "title": "Créer votre compte",
+      "subtitle": "Rejoignez NexusAI-DB pour enregistrer vos recommandations et votre historique.",
+      "fullName": "Nom complet",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "placeholderName": "Jean Dupont",
+      "placeholderPasswordHint": "Min. 6 caractères",
+      "placeholderConfirm": "Répéter le mot de passe",
+      "creating": "Création du compte…",
+      "createAccount": "Créer un compte",
+      "haveAccount": "Vous avez déjà un compte ?",
+      "signInLink": "Se connecter",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "passwordShort": "Le mot de passe doit contenir au moins 6 caractères",
+      "registrationFailed": "Échec de l’inscription."
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "welcomeBack": "Bon retour,",
+    "admin": "⚡ Admin",
+    "user": "◆ Utilisateur",
+    "profile": "Profil",
+    "profileBlurb": "Ce tableau de bord simplifié affiche votre session authentifiée via les API de connexion, d’inscription et de session."
+  },
+  "recommend": {
+    "panelLabel": "Découverte guidée",
+    "title": "Cliquez dans le champ et décrivez votre besoin",
+    "subtitle": "Pas besoin des bons mots-clés. Décrivez simplement ce que vous voulez faire — on s’occupe du reste.",
+    "placeholder": "Cliquez ici et écrivez ce que vous voulez — ou dites « aidez-moi à choisir un modèle d’IA pour… »",
+    "working": "Patience…",
+    "go": "C’est parti",
+    "errorMin": "Décrivez votre cas d’usage (au moins 4 caractères).",
+    "quick": {
+      "createImage": "Créer une image",
+      "generateAudio": "Générer de l’audio",
+      "createVideo": "Créer une vidéo",
+      "createSlides": "Créer des diapos",
+      "createInfographs": "Créer des infographies",
+      "createQuiz": "Créer un quiz",
+      "flashcards": "Fiches",
+      "mindMap": "Carte mentale",
+      "analyseData": "Analyser des données",
+      "writeContent": "Rédiger du contenu",
+      "codeGeneration": "Génération de code",
+      "documentAnalysis": "Analyse de documents",
+      "translate": "Traduire",
+      "justExploring": "Je explore"
+    }
+  },
+  "chatLauncher": {
+    "fabAria": "Ouvrir le chat de découverte guidée",
+    "fabLabel": "Hub discussion",
+    "title": "Chat de découverte guidée",
+    "subtitle": "Dites-nous ce que vous voulez faire — nous vous aidons à trouver les bons modèles.",
+    "closeAria": "Fermer le chat",
+    "welcomeBot": "Bonjour ! Je suis votre chat de découverte guidée. Dites-moi ce que vous voulez créer et je vous proposerai des modèles à explorer.",
+    "replyBot": "Super ! Il n’y a pas encore de modèle IA en direct ici, mais selon votre message je mets en avant des modèles adaptés dans le panneau de recommandation. Essayez aussi le grand champ sur la page pour un top 3 classé.",
+    "placeholder": "Décrivez votre cas d’usage en langage courant…",
+    "send": "Envoyer",
+    "suggestions": [
+      "Aidez-moi à choisir un modèle pour le code",
+      "Je veux générer des images produit",
+      "Recommandez un modèle pour de longs documents",
+      "Suggérez un modèle économique"
+    ]
+  },
+  "agents": {
+    "title": "Créateur d’agents",
+    "subtitle": "Créez des agents IA puissants avec n’importe quel modèle. Choisissez un modèle ou partez de zéro.",
+    "newAgent": "+ Nouvel agent",
+    "canvasTitle": "Vous ne savez pas par où commencer ?",
+    "canvasText": "Discutez avec notre guide IA — décrivez le rôle de votre agent et obtenez un plan de configuration personnalisé.",
+    "askHub": "Demander au Hub →",
+    "templatesTitle": "Modèles d’agents",
+    "useTemplate": "Utiliser le modèle →",
+    "templates": {
+      "research": {
+        "title": "Agent de recherche",
+        "description": "Automatise la veille web, résume les résultats et produit des rapports structurés à la demande.",
+        "tags": ["Rapports", "Recherche web"]
+      },
+      "support": {
+        "title": "Agent support client",
+        "description": "Gère les tickets, la FAQ et escalade les cas complexes avec tout le contexte de conversation.",
+        "tags": ["Support", "Ticketing"]
+      },
+      "review": {
+        "title": "Agent revue de code",
+        "description": "Examine les pull requests, signale les bugs, propose des améliorations et explique les changements.",
+        "tags": ["Code", "GitHub"]
+      },
+      "analysis": {
+        "title": "Agent d’analyse de données",
+        "description": "Traite les feuilles de calcul, produit des insights, des visualisations et répond aux questions data.",
+        "tags": ["Tableurs", "Graphiques"]
+      },
+      "content": {
+        "title": "Agent rédacteur",
+        "description": "Rédige articles, contenus sociaux et textes marketing adaptés à votre voix de marque.",
+        "tags": ["Contenu", "Marketing"]
+      }
+    }
+  },
+  "discover": {
+    "title": "Fil d’actualité recherche IA",
+    "items": {
+      "1": {
+        "title": "Gemini 2.5 Pro bat un nouveau record sur les benchmarks de raisonnement",
+        "summary": "82,3 % à l’AIME 2025, devant les modèles précédents sur les tâches exigeantes en raisonnement."
+      },
+      "2": {
+        "title": "Lois d’échelle des modèles multimodaux : nouveaux résultats empiriques",
+        "summary": "La recherche montre des dynamiques inattendues en combinant vision et langage — les gains d’efficacité plafonnent plus tôt que prévu."
+      },
+      "3": {
+        "title": "Constitutional AI v2 : meilleur alignement par affinage itératif",
+        "summary": "La nouvelle méthode réduit de 40 % les sorties nuisibles tout en conservant les performances sur les benchmarks."
+      },
+      "4": {
+        "title": "Llama 4 Scout & Maverick : multimodal natif de bout en bout",
+        "summary": "Architecture MoE 17B entraînée sur 40 billions de tokens, avec compréhension native du texte, des images et de l’audio."
+      },
+      "5": {
+        "title": "Rappel en long contexte : comment les modèles gèrent 1M+ tokens",
+        "summary": "Une évaluation complète montre une forte dégradation du rappel au-delà de 200K tokens pour la plupart des modèles frontière."
+      },
+      "6": {
+        "title": "DeepSeek‑R1 en poids ouverts : raisonnement frontière à moindre coût",
+        "summary": "La publication des poids permet le fine-tuning métier pour une fraction du coût des modèles frontière."
+      }
+    }
+  },
+  "home": {
+    "badge": "Marketplace de modèles IA",
+    "heroLine1": "Trouvez le",
+    "heroHighlight": "modèle IA",
+    "heroLine2": "idéal grâce à la découverte guidée",
+    "heroSub": "Vous n’avez pas besoin de tout savoir sur l’IA. Répondez à quelques questions simples et nous vous aidons à découvrir, comparer et déployer le bon modèle pour votre cas d’usage.",
+    "ctaPrimary": "C’est parti",
+    "ctaSecondary": "Passer — rechercher directement",
+    "stats": {
+      "models": "{{count}} modèles IA",
+      "builders": "{{count}} créateurs",
+      "labs": "{{count}} laboratoires IA",
+      "rating": "{{rating}}⭐ note moy."
+    },
+    "builderSection": "Pensé pour tous les créateurs",
+    "flagshipTitle": "Comparaison des modèles phares",
+    "flagshipCompare": "Tout comparer →",
+    "table": {
+      "model": "Modèle",
+      "lab": "Labo",
+      "context": "Contexte",
+      "input": "Entrée $/1M",
+      "output": "Sortie $/1M",
+      "multimodal": "Multimodal",
+      "speed": "Vitesse",
+      "bestFor": "Idéal pour"
+    },
+    "flagshipNote": "* Prix indicatifs. Les modèles auto-hébergés gratuits excluent l’infra. Tarifs bêta susceptibles d’évoluer.",
+    "trendingTitle": "🔥 Tendances cette semaine",
+    "trendingLink": "Voir le fil recherche →",
+    "labsTitle": "Parcourir par labo IA",
+    "labsLink": "Voir tous les labos →",
+    "budgetTitle": "Modèles par budget",
+    "useCaseTitle": "Démarrage rapide par cas d’usage",
+    "featuredTitle": "Modèles mis en avant",
+    "featuredBrowse": "Voir les {{count}}",
+    "newsletterTitle": "De nouveaux modèles chaque semaine.\nNe manquez aucune sortie.",
+    "newsletterText": "Recevez une sélection hebdomadaire : nouvelles sorties, benchmarks, évolutions de prix et astuces de prompts — dans votre boîte mail.",
+    "newsletterPlaceholder": "vous@exemple.com",
+    "newsletterCta": "S’abonner gratuitement →",
+    "newsletterMeta": "Pas de spam. Désabonnement à tout moment.",
+    "footerBrand": "NexusAI Model Marketplace",
+    "footerMeta": "Nouveaux modèles, benchmarks, prix et astuces de prompts.",
+    "footerModels": "Modèles",
+    "footerResearch": "Recherche",
+    "footerApi": "API",
+    "footerPrivacy": "Confidentialité",
+    "footerTerms": "Conditions"
+  },
+  "chatHub": {
+    "modelsSidebar": "MODÈLES",
+    "searchPlaceholder": "Rechercher parmi 525 modèles…",
+    "loadingModels": "Chargement des modèles…",
+    "noModels": "Aucun modèle trouvé",
+    "welcomeTitle": "Bienvenue ! Je suis là pour vous aider 👋",
+    "welcomeSubBefore": "Aucune compétence technique requise. Dites-moi ce que vous souhaitez ",
+    "welcomeSubStrong": "accomplir",
+    "welcomeSubAfter": " — je vous aide à découvrir le possible, étape par étape.",
+    "actionLabel": "QUE VOULEZ-VOUS FAIRE AUJOURD’HUI ?",
+    "actionHint": "Ou écrivez n’importe quoi ci-dessous — il n’y a pas de mauvaise réponse ↓",
+    "inputPlaceholder": "Décrivez votre projet, posez une question, ou dites bonjour — je suis là pour vous aider…",
+    "toolVoice": "Voix",
+    "toolAttach": "Joindre",
+    "toolVideo": "Vidéo",
+    "toolCode": "Code",
+    "toolDocument": "Document",
+    "toolImage": "Image",
+    "toolMore": "Plus",
+    "selectModel": "Choisir un modèle",
+    "viewModelDetails": "Voir le détail du modèle",
+    "sendTitle": "Envoyer",
+    "clearChat": "Effacer la conversation",
+    "quickActions": "ACTIONS RAPIDES",
+    "sections": {
+      "navTools": "NAVIGATION & OUTILS",
+      "createGenerate": "CRÉER & GÉNÉRER",
+      "analyzeWrite": "ANALYSER & ÉCRIRE"
+    },
+    "tabs": {
+      "use_cases": "Cas d’usage",
+      "monitor": "Suivre la situation",
+      "prototype": "Créer un prototype",
+      "business": "Business plan",
+      "content": "Créer du contenu",
+      "research": "Analyser & rechercher",
+      "learn": "Apprendre"
+    },
+    "actionCards": {
+      "write": { "label": "Rédiger du contenu", "desc": "E-mails, posts, récits" },
+      "images": { "label": "Créer des images", "desc": "Art, photos, designs" },
+      "build": { "label": "Construire quelque chose", "desc": "Apps, outils, sites" },
+      "automate": { "label": "Automatiser", "desc": "Gagnez des heures chaque semaine" },
+      "analyse": { "label": "Analyser des données", "desc": "PDF, tableurs, rapports" },
+      "explore": { "label": "Je explore", "desc": "Montrez-moi le possible" }
+    },
+    "quickItems": {
+      "browseMarketplace": "Parcourir le marketplace",
+      "buildAgent": "Créer un agent",
+      "howToGuide": "Guide d’utilisation",
+      "promptEngineering": "Ingénierie de prompts",
+      "viewPricing": "Voir les tarifs",
+      "modelsAnalysis": "Analyse des modèles IA",
+      "createImage": "Créer une image",
+      "generateAudio": "Générer de l’audio",
+      "createVideo": "Créer une vidéo",
+      "createSlides": "Créer des diapos",
+      "createInfographs": "Créer des infographies",
+      "createQuiz": "Créer un quiz",
+      "createFlashcards": "Créer des fiches",
+      "createMindMap": "Carte mentale",
+      "analyzeData": "Analyser des données",
+      "writeContent": "Rédiger du contenu",
+      "codeGeneration": "Génération de code",
+      "documentAnalysis": "Analyse de documents",
+      "translate": "Traduire"
+    },
+    "bot": {
+      "matches": "Bonne question ! J’ai trouvé {{count}} correspondances solides : {{names}}. Le meilleur choix est {{top}} avec un score de {{score}} %. Cliquez sur un modèle dans la barre latérale pour en savoir plus !",
+      "noMatches": "Je n’ai pas trouvé de correspondance forte. Essayez de préciser ce que vous voulez créer — par exemple « générer des images », « écrire du code », « transcrire de l’audio » ou « traduire ».",
+      "noModelsLoaded": "Parlez-moi davantage de votre projet et je recommanderai les meilleurs modèles d’IA pour vous !"
+    }
+  },
+  "marketplace": {
+    "titleModel": "Modèle",
+    "titleHighlight": "Marketplace",
+    "subtitle": "Recherchez et comparez les modèles frontière : labos, tarifs et capacités.",
+    "pillModels": "525+ modèles",
+    "pillUpdated": "Mis à jour quotidiennement",
+    "searchPlaceholder": "Rechercher modèles, capacités…",
+    "filters": {
+      "allLabs": "Tous les labos",
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "googleDeepMind": "Google DeepMind",
+      "meta": "Meta",
+      "mistral": "Mistral",
+      "cohere": "Cohere",
+      "microsoft": "Microsoft",
+      "amazon": "Amazon"
+    },
+    "providers": {
+      "openai": "OpenAI",
+      "anthropic": "Anthropic",
+      "googleDeepMind": "Google DeepMind",
+      "meta": "Meta"
+    },
+    "pricingTypes": {
+      "payPerUse": "À l’usage",
+      "subscription": "Abonnement",
+      "freeTier": "Gratuit"
+    },
+    "tags": {
+      "Premium": "Premium",
+      "Cost-effective": "Économique",
+      "Turbo": "Turbo",
+      "Popular": "Populaire",
+      "Everyday": "Quotidien",
+      "Reasoning": "Raisonnement",
+      "Open Source": "Open source",
+      "New": "Nouveau"
+    },
+    "helpTitle": "Besoin d’aide pour choisir ?",
+    "helpText": "Discutez avec notre guide IA pour une recommandation personnalisée en moins de 60 secondes.",
+    "openChatHub": "Ouvrir le Hub discussion →",
+    "providerHeading": "FOURNISSEUR",
+    "pricingHeading": "MODÈLE DE TARIFICATION",
+    "emptyTitle": "Aucun modèle trouvé",
+    "emptyHint": "Essayez un autre terme ou filtre.",
+    "loading": "Chargement du marketplace…",
+    "modalClose": "Fermer",
+    "modalBy": "par",
+    "apiAvailable": "API disponible",
+    "aboutModel": "À propos de ce modèle",
+    "capabilities": "Capacités",
+    "pricing": "Tarification",
+    "input": "Entrée",
+    "output": "Sortie",
+    "rating": "Note",
+    "reviews": "Avis"
+  }
+}

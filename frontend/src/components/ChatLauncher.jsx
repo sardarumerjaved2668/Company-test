@@ -1,42 +1,42 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-
-const SUGGESTIONS = [
-  'Help me choose a coding model',
-  'I want to generate product images',
-  'Recommend a model for long documents',
-  'Suggest a budget-friendly model',
-];
+import { useState, useRef, useEffect, useMemo } from 'react';
+import { useLocale } from '../context/LocaleContext';
 
 export default function ChatLauncher() {
+  const { t, messages } = useLocale();
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([
-    {
-      from: 'bot',
-      text: "Hi! I'm your guided discovery chat. Tell me what you want to build and I'll suggest which models to explore.",
-    },
-  ]);
+  const [messagesState, setMessagesState] = useState([]);
   const endRef = useRef(null);
+
+  const suggestions = useMemo(() => messages.chatLauncher?.suggestions || [], [messages]);
+
+  useEffect(() => {
+    setMessagesState([
+      {
+        from: 'bot',
+        text: t('chatLauncher.welcomeBot'),
+      },
+    ]);
+  }, [t]);
 
   useEffect(() => {
     if (open && endRef.current) {
       endRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
-  }, [open, messages.length]);
+  }, [open, messagesState.length]);
 
   const handleSend = () => {
     if (!input.trim()) return;
     const userText = input.trim();
     setInput('');
-    setMessages((prev) => [
+    setMessagesState((prev) => [
       ...prev,
       { from: 'user', text: userText },
       {
         from: 'bot',
-        text:
-          "Great! I don't run a live AI model here yet, but based on your message I'll highlight suitable models in the recommendation panel above. Try also using the big input on the page to get a ranked top 3.",
+        text: t('chatLauncher.replyBot'),
       },
     ]);
   };
@@ -55,26 +55,28 @@ export default function ChatLauncher() {
   return (
     <>
       <button
+        type="button"
         className="chat-fab"
         onClick={() => setOpen((v) => !v)}
-        aria-label="Open guided discovery chat"
+        aria-label={t('chatLauncher.fabAria')}
       >
         <span className="chat-fab-icon">💬</span>
-        <span className="chat-fab-label">Chat Hub</span>
+        <span className="chat-fab-label">{t('chatLauncher.fabLabel')}</span>
       </button>
 
       <div className={`chat-panel${open ? ' chat-panel-open' : ''}`} id="chat-hub">
         <div className="chat-panel-header">
           <div>
-            <div className="chat-panel-title">Guided Discovery Chat</div>
+            <div className="chat-panel-title">{t('chatLauncher.title')}</div>
             <div className="chat-panel-sub">
-              Tell us what you&apos;re trying to do — we&apos;ll help you find the right models.
+              {t('chatLauncher.subtitle')}
             </div>
           </div>
           <button
+            type="button"
             className="chat-panel-close"
             onClick={() => setOpen(false)}
-            aria-label="Close chat"
+            aria-label={t('chatLauncher.closeAria')}
           >
             ×
           </button>
@@ -82,9 +84,9 @@ export default function ChatLauncher() {
 
         <div className="chat-panel-body">
           <div className="chat-messages">
-            {messages.map((m) => (
+            {messagesState.map((m, i) => (
               <div
-                key={`${m.from}-${m.text}-${Math.random().toString(36).slice(2, 6)}`}
+                key={`${m.from}-${i}-${m.text.slice(0, 12)}`}
                 className={`chat-message chat-message-${m.from}`}
               >
                 {m.text}
@@ -94,7 +96,7 @@ export default function ChatLauncher() {
           </div>
 
           <div className="chat-suggestions">
-            {SUGGESTIONS.map((s) => (
+            {suggestions.map((s) => (
               <button
                 key={s}
                 type="button"
@@ -110,7 +112,7 @@ export default function ChatLauncher() {
             <textarea
               className="chat-input"
               rows={2}
-              placeholder="Describe your use case in plain language…"
+              placeholder={t('chatLauncher.placeholder')}
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
@@ -120,7 +122,7 @@ export default function ChatLauncher() {
               className="chat-send-btn"
               onClick={handleSend}
             >
-              Send
+              {t('chatLauncher.send')}
             </button>
           </div>
         </div>
@@ -128,4 +130,3 @@ export default function ChatLauncher() {
     </>
   );
 }
-

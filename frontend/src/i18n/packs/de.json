@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "chatHub": "💬 Chat-Hub",
+    "marketplace": "🛍 Marktplatz",
+    "agents": "🤖 Agenten",
+    "discoverNew": "🔬 Neu entdecken",
+    "appLanguage": "APP-SPRACHE",
+    "dashboard": "Dashboard",
+    "logout": "Abmelden",
+    "signIn": "Anmelden",
+    "tryFree": "Kostenlos testen →"
+  },
+  "auth": {
+    "login": {
+      "title": "Willkommen zurück",
+      "subtitle": "Melden Sie sich an, um Empfehlungen zu speichern und Ihr Dashboard zu nutzen.",
+      "signIn": "Anmelden",
+      "noAccount": "Noch kein Konto?",
+      "createOne": "Konto erstellen"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "subtitle": "Treten Sie NexusAI-DB bei, um Empfehlungen und Verlauf zu speichern.",
+      "createAccount": "Konto erstellen",
+      "haveAccount": "Bereits ein Konto?",
+      "signInLink": "Anmelden"
+    }
+  },
+  "home": {
+    "badge": "KI-Modell-Marktplatz",
+    "heroLine1": "Finden Sie Ihr perfektes",
+    "heroHighlight": "KI-Modell",
+    "heroLine2": "mit geführter Entdeckung",
+    "heroSub": "Sie müssen nichts über KI wissen. Beantworten Sie ein paar Fragen – wir helfen Ihnen, das passende Modell zu finden, zu vergleichen und einzusetzen.",
+    "ctaPrimary": "Los geht’s",
+    "ctaSecondary": "Überspringen — direkt suchen",
+    "builderSection": "Für alle Builder gemacht",
+    "flagshipTitle": "Flaggschiff-Modellvergleich",
+    "trendingTitle": "🔥 Trends diese Woche",
+    "labsTitle": "Nach KI-Labor durchsuchen",
+    "budgetTitle": "Modelle nach Budget",
+    "useCaseTitle": "Schnellstart nach Anwendungsfall",
+    "featuredTitle": "Vorgestellte Modelle",
+    "newsletterTitle": "Jede Woche neue Modelle.\nVerpassen Sie kein Release.",
+    "footerBrand": "NexusAI Modell-Marktplatz"
+  },
+  "recommend": {
+    "panelLabel": "Geführte Entdeckung",
+    "title": "Klicken Sie ins Feld und beschreiben Sie Ihr Vorhaben",
+    "subtitle": "Sie brauchen keine perfekten Stichworte. Beschreiben Sie einfach, was Sie tun möchten — wir übernehmen den Rest.",
+    "go": "Los geht’s",
+    "working": "Arbeitet…"
+  },
+  "chatLauncher": {
+    "fabLabel": "Chat-Hub",
+    "title": "Geführtes Entdeckungs-Chat",
+    "subtitle": "Sagen Sie uns, was Sie vorhaben — wir helfen, die passenden Modelle zu finden.",
+    "send": "Senden"
+  },
+  "marketplace": {
+    "titleModel": "Modell",
+    "titleHighlight": "Marktplatz",
+    "subtitle": "Frontier-Modelle vergleichen: Labs, Preise und Fähigkeiten.",
+    "pillModels": "525+ Modelle",
+    "pillUpdated": "Täglich aktualisiert",
+    "searchPlaceholder": "Modelle, Fähigkeiten suchen…",
+    "helpTitle": "Brauchen Sie Hilfe bei der Wahl?",
+    "openChatHub": "Chat-Hub öffnen →",
+    "emptyTitle": "Keine Modelle gefunden",
+    "loading": "Marktplatz wird geladen…"
+  },
+  "chatHub": {
+    "modelsSidebar": "MODELLE",
+    "welcomeTitle": "Willkommen! Ich helfe Ihnen gern 👋",
+    "quickActions": "SCHNELLAKTIONEN"
+  },
+  "agents": {
+    "title": "Agent-Builder",
+    "subtitle": "Erstellen Sie leistungsstarke KI-Agenten mit jedem Modell. Wählen Sie eine Vorlage oder starten Sie neu.",
+    "newAgent": "+ Neuer Agent",
+    "templatesTitle": "Agent-Vorlagen"
+  },
+  "discover": {
+    "title": "KI-Forschungsfeed"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeBack": "Willkommen zurück,",
+    "profile": "Profil"
+  }
+}
