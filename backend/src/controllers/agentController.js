@@ -191,17 +191,22 @@ exports.getMyWorkspace = async (req, res, next) => {
 exports.createMyAgent = async (req, res, next) => {
   try {
     const { name, templateId, purpose, systemPrompt, model, tags, icon } = req.body;
+    const modelStr =
+      typeof model === 'string' && model.trim() ? model.trim() : 'GPT-4o';
     const payload = {
       user: req.user._id,
-      name: name.trim(),
+      name: String(name || '').trim(),
       templateId: templateId || '',
-      purpose: purpose || '',
-      systemPrompt: systemPrompt || '',
-      model: model.trim(),
+      purpose: typeof purpose === 'string' ? purpose : '',
+      systemPrompt: typeof systemPrompt === 'string' ? systemPrompt : '',
+      model: modelStr,
       tags: Array.isArray(tags) ? tags.map((t) => String(t).slice(0, 40)).filter(Boolean) : [],
       icon: icon || '🤖',
       isDefault: false,
     };
+    if (!payload.name) {
+      return res.status(400).json({ success: false, message: 'Name is required.' });
+    }
     const created = await UserAgent.create(payload);
     res.status(201).json({ success: true, data: { userAgent: created } });
   } catch (err) { next(err); }

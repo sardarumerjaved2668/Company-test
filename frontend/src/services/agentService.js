@@ -192,10 +192,24 @@ export function fetchMyWorkspaceLocal() {
   return ensureLocalDefault();
 }
 
+function apiErrorMessage(error, fallback) {
+  const msg = error?.response?.data?.message;
+  if (typeof msg === 'string' && msg.trim()) return msg.trim();
+  if (Array.isArray(msg) && msg[0]?.msg) return String(msg[0].msg);
+  if (error?.message && typeof error.message === 'string') return error.message;
+  return fallback;
+}
+
 export async function createUserAgent(body) {
-  const { data } = await api.post('/agents/me', body);
-  if (!data.success) throw new Error(data.message || 'Failed to create agent');
-  return data.data.userAgent;
+  try {
+    const { data } = await api.post('/agents/me', body);
+    if (!data?.success || !data.data?.userAgent) {
+      throw new Error(data?.message || 'Failed to create agent');
+    }
+    return data.data.userAgent;
+  } catch (e) {
+    throw new Error(apiErrorMessage(e, 'Could not create agent. Check your connection and try again.'));
+  }
 }
 
 export function createUserAgentLocal(body) {

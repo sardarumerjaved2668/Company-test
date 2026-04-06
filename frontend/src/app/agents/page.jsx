@@ -321,9 +321,106 @@ function Workbench({
   onOpenScratch,
   initialQuery,
   quickTaskTitle,
+  workspaceAgents = [],
+  selectedAgentId,
+  defaultAgentId,
+  onSelectAgent,
+  t,
 }) {
   return (
     <div className="ab-workbench-view">
+      <div className="ab-main-panels">
+        <section className="ab-main-panel ab-main-panel--my" aria-labelledby="ab-panel-my-agents">
+          <div className="ab-main-panel-hd">
+            <span className="ab-main-panel-ico" aria-hidden>
+              🤖
+            </span>
+            <h2 id="ab-panel-my-agents" className="ab-main-panel-title">
+              {t('agents.sectionMyAgents')}
+            </h2>
+          </div>
+          {workspaceAgents.length === 0 ? (
+            <p className="ab-main-panel-empty">{t('agents.libraryEmptyMine')}</p>
+          ) : (
+            <div className="agents-user-grid ab-main-panel-grid">
+              {workspaceAgents.map((a) => {
+                const name = a.title || a.name || 'Agent';
+                const isSel = selectedAgentId === a._id;
+                return (
+                  <button
+                    key={a._id}
+                    type="button"
+                    className={`agents-user-card${isSel ? ' agents-user-card--active' : ''}`}
+                    onClick={() => onSelectAgent(a._id)}
+                    aria-pressed={isSel}
+                    aria-label={t('agents.selectAgentTasks', { name })}
+                  >
+                    <span className="agents-user-ico" aria-hidden>
+                      {a.icon || '✦'}
+                    </span>
+                    <div className="agents-user-meta">
+                      <div className="agents-user-name">{name}</div>
+                      {a.model ? <div className="agents-user-model">{a.model}</div> : null}
+                      {a._id === defaultAgentId || a.isDefault ? (
+                        <span className="agents-pill">Default</span>
+                      ) : null}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
+        </section>
+
+        <section className="ab-main-panel ab-main-panel--library" aria-labelledby="ab-panel-agent-library">
+          <div className="ab-main-panel-hd">
+            <h2 id="ab-panel-agent-library" className="ab-main-panel-title">
+              {t('agents.sectionAgentLibrary')}
+            </h2>
+          </div>
+          <p className="ab-main-panel-sub">{t('agents.agentLibrarySub')}</p>
+          {tplLoading && <p className="ab-main-panel-empty">{t('agents.loading')}</p>}
+          {!tplLoading && tplRows.length === 0 && (
+            <p className="ab-main-panel-empty">{t('agents.noTemplates')}</p>
+          )}
+          {!tplLoading && tplRows.length > 0 && (
+            <div className="ab-library-cards-grid">
+              {tplRows.map((agent) => (
+                <button
+                  key={agent.templateId || agent._id}
+                  type="button"
+                  className="agents-tpl-card agents-tpl-card--grid"
+                  onClick={() => onOpenTemplate(agent)}
+                >
+                  <div className="agents-tpl-top">
+                    <span className="agents-tpl-ico">{agent.icon}</span>
+                    <span className="agents-tpl-name">{agent.title}</span>
+                  </div>
+                  <p className="agents-tpl-desc">{agent.description}</p>
+                  <div className="agents-tpl-tags">
+                    <span className="agents-tpl-model">{agent.model}</span>
+                    {(agent.tags || []).slice(0, 3).map((tag) => (
+                      <span key={tag} className="agents-tpl-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </button>
+              ))}
+              <button
+                type="button"
+                className="agents-tpl-card agents-tpl-card--scratch agents-tpl-card--grid"
+                onClick={onOpenScratch}
+              >
+                <span className="agents-scratch-ico">+</span>
+                <div className="agents-scratch-txt">{t('workbench.buildScratch')}</div>
+                <div className="agents-scratch-sub">{t('agents.scratchSub')}</div>
+              </button>
+            </div>
+          )}
+        </section>
+      </div>
+
       <WorkbenchSearch
         variant="agents"
         showHeadline
@@ -340,7 +437,7 @@ function Workbench({
           {!tplLoading && <span className="ab-tpl-count">{tplRows.length}</span>}
         </div>
         {tplLoading ? (
-          <div className="ab-tpl-loading-text">Loading templates…</div>
+          <div className="ab-tpl-loading-text">{t('agents.loading')}</div>
         ) : (
           <div className="agents-template-row">
             {tplRows.map((agent) => (
@@ -369,7 +466,7 @@ function Workbench({
               onClick={onOpenScratch}
             >
               <span className="agents-scratch-ico">+</span>
-              <div className="agents-scratch-txt">Build from Scratch</div>
+              <div className="agents-scratch-txt">{t('workbench.buildScratch')}</div>
             </button>
           </div>
         )}
@@ -398,8 +495,6 @@ function AgentsPageInner() {
 
   /* modal */
   const [modal, setModal] = useState({ open: false, mode: 'template', agent: null });
-  /** Sidebar: default templates vs user's custom agents (Netlify-style switcher) */
-  const [libraryTab, setLibraryTab] = useState('default');
 
   /* task selection — drives main view */
   const [selectedTaskId, setSelectedTaskId] = useState(null);
@@ -431,21 +526,39 @@ function AgentsPageInner() {
     return () => { cancelled = true; };
   }, []);
 
-  /* default agent for task creation */
+  /* default agent — only this agent receives newly created tasks */
   const defaultAgent = useMemo(
     () => workspaceAgents.find((a) => a.isDefault) || workspaceAgents[0] || null,
     [workspaceAgents]
   );
 
-  /* auto-select first task after create */
-  const prevTaskCount = useRef(tasks.length);
+  /** Which user agent’s tasks are listed in the sidebar (click an agent in My Agents). */
+  const [selectedAgentId, setSelectedAgentId] = useState(null);
+
   useEffect(() => {
-    if (tasks.length > prevTaskCount.current) {
-      const newest = tasks[tasks.length - 1];
-      if (newest?._id) setSelectedTaskId(newest._id);
+    if (!defaultAgent?._id) return;
+    setSelectedAgentId((prev) => {
+      if (prev && workspaceAgents.some((a) => a._id === prev)) return prev;
+      return defaultAgent._id;
+    });
+  }, [defaultAgent?._id, workspaceAgents]);
+
+  const selectedAgent = useMemo(
+    () => workspaceAgents.find((a) => a._id === selectedAgentId) || null,
+    [workspaceAgents, selectedAgentId]
+  );
+
+  const filteredTasks = useMemo(
+    () => (selectedAgentId ? tasks.filter((task) => task.agent === selectedAgentId) : []),
+    [tasks, selectedAgentId]
+  );
+
+  useEffect(() => {
+    const st = tasks.find((x) => x._id === selectedTaskId);
+    if (selectedTaskId && (!st || st.agent !== selectedAgentId)) {
+      setSelectedTaskId(null);
     }
-    prevTaskCount.current = tasks.length;
-  }, [tasks]);
+  }, [selectedAgentId, tasks, selectedTaskId]);
 
   useEffect(() => {
     if (editingTaskId) editInputRef.current?.focus();
@@ -456,9 +569,11 @@ function AgentsPageInner() {
     if (!title || !defaultAgent) return;
     setTaskBusy(true);
     try {
-      await addTask(defaultAgent._id, title);
+      const created = await addTask(defaultAgent._id, title);
       setTaskDraft('');
       setShowTaskInput(false);
+      setSelectedAgentId(defaultAgent._id);
+      if (created?._id) setSelectedTaskId(created._id);
     } finally {
       setTaskBusy(false);
     }
@@ -525,15 +640,6 @@ function AgentsPageInner() {
     }
   };
 
-  const displayFor = (agent) => {
-    const block = messages.agents?.templates?.[agent.templateId];
-    return {
-      title: block?.title || agent.title || agent.name || '',
-      description: block?.description || agent.description || '',
-      tags: block?.tags || agent.tags || [],
-    };
-  };
-
   const openTemplateModal = (agent) => {
     setModal({ open: true, mode: 'template', agent });
   };
@@ -547,7 +653,8 @@ function AgentsPageInner() {
   };
 
   const handleSaveAgent = async (payload) => {
-    await addAgent(payload);
+    const created = await addAgent(payload);
+    if (created?._id) setSelectedAgentId(created._id);
   };
 
   const handleWorkbenchSubmit = useCallback((text) => {
@@ -558,7 +665,16 @@ function AgentsPageInner() {
   }, []);
 
   const selectedTask = tasks.find((task) => task._id === selectedTaskId) || null;
-  const modalDisplay = modal.agent ? displayFor(modal.agent) : { title: '', description: '', tags: [] };
+  const modalDisplay = useMemo(() => {
+    if (!modal.agent) return { title: '', description: '', tags: [] };
+    const agent = modal.agent;
+    const block = messages.agents?.templates?.[agent.templateId];
+    return {
+      title: block?.title || agent.title || agent.name || '',
+      description: block?.description || agent.description || '',
+      tags: block?.tags || agent.tags || [],
+    };
+  }, [modal.agent, messages]);
 
   if (authLoading) {
     return (
@@ -606,69 +722,6 @@ function AgentsPageInner() {
           </button>
         </div>
 
-        <div className="ab-sb-library">
-          <div className="ab-sb-library-label">{t('agents.libraryTemplates')}</div>
-          <div className="ab-sb-segment" role="tablist" aria-label={t('agents.libraryTemplates')}>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={libraryTab === 'default'}
-              className={libraryTab === 'default' ? 'ab-sb-segment--active' : ''}
-              onClick={() => setLibraryTab('default')}
-            >
-              {t('agents.libraryDefault')}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={libraryTab === 'mine'}
-              className={libraryTab === 'mine' ? 'ab-sb-segment--active' : ''}
-              onClick={() => setLibraryTab('mine')}
-            >
-              {t('agents.libraryMine')}
-            </button>
-          </div>
-          <div className="ab-sb-lib-list">
-            {libraryTab === 'default' && (
-              <>
-                {tplLoading && (
-                  <p className="ab-sb-empty">{t('agents.loading')}</p>
-                )}
-                {!tplLoading && tplRows.length === 0 && (
-                  <p className="ab-sb-empty">{t('agents.noTemplates')}</p>
-                )}
-                {!tplLoading &&
-                  tplRows.map((agent) => (
-                    <button
-                      key={agent.templateId || agent._id}
-                      type="button"
-                      className="ab-sb-lib-item"
-                      onClick={() => openTemplateModal(agent)}
-                    >
-                      <span className="ab-sb-lib-ico">{agent.icon || '🤖'}</span>
-                      <span className="ab-sb-lib-name">{agent.title}</span>
-                    </button>
-                  ))}
-              </>
-            )}
-            {libraryTab === 'mine' && (
-              <>
-                {workspaceAgents.length === 0 ? (
-                  <p className="ab-sb-empty">{t('agents.libraryEmptyMine')}</p>
-                ) : (
-                  workspaceAgents.map((a) => (
-                    <div key={a._id} className="ab-sb-lib-item" style={{ cursor: 'default' }}>
-                      <span className="ab-sb-lib-ico">{a.icon || '✦'}</span>
-                      <span className="ab-sb-lib-name">{a.title || a.name || 'Agent'}</span>
-                      {a.isDefault ? <span className="ab-sb-badge">Default</span> : null}
-                    </div>
-                  ))
-                )}
-              </>
-            )}
-          </div>
-        </div>
-
         {/* Help card */}
         <div className="ab-sb-help-card">
           <div className="ab-sb-help-icon">✦</div>
@@ -684,11 +737,18 @@ function AgentsPageInner() {
         {/* Tasks section — Netlify-style: header, composer (Add/Cancel), cards with Edit/Duplicate/Delete */}
         <div className="ab-sb-tasks">
           <div className="ab-sb-tasks-head">
-            <span className="ab-sb-tasks-label">{t('agents.tasksSection')}</span>
+            <span className="ab-sb-tasks-label">
+              {selectedAgent
+                ? t('agents.tasksSectionFor', { name: selectedAgent.title || selectedAgent.name || 'Agent' })
+                : t('agents.tasksSection')}
+            </span>
             <span className="ab-sb-tasks-count" aria-hidden>
-              {tasks.length}
+              {filteredTasks.length}
             </span>
           </div>
+          {defaultAgent && selectedAgentId && selectedAgentId !== defaultAgent._id ? (
+            <p className="ab-sb-tasks-hint">{t('agents.tasksHintNewOnDefault')}</p>
+          ) : null}
 
           <button type="button" className="ab-sb-new-task" onClick={openNewTaskInput}>
             <span className="ab-sb-new-task-plus">+</span>
@@ -728,13 +788,13 @@ function AgentsPageInner() {
           ) : null}
 
           <ul className="ab-sb-task-list">
-            {tasks.length === 0 && !showTaskInput ? (
+            {filteredTasks.length === 0 && !showTaskInput ? (
               <li className="ab-sb-task-empty" role="status">
-                {t('agents.tasksEmpty')}
+                {tasks.length === 0 ? t('agents.tasksEmpty') : t('agents.tasksEmptyForAgent')}
               </li>
             ) : null}
 
-            {tasks.map((task) => {
+            {filteredTasks.map((task) => {
               const isActive = selectedTaskId === task._id;
               const isEditing = editingTaskId === task._id;
               return (
@@ -875,6 +935,11 @@ function AgentsPageInner() {
             onOpenScratch={openScratchModal}
             initialQuery={initialQ}
             quickTaskTitle={t('agents.quickTaskTitle')}
+            workspaceAgents={workspaceAgents}
+            selectedAgentId={selectedAgentId}
+            defaultAgentId={defaultAgent?._id}
+            onSelectAgent={setSelectedAgentId}
+            t={t}
           />
         )}
       </div>

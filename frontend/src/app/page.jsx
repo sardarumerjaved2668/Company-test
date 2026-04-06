@@ -108,7 +108,7 @@ export default function HomePage() {
           <WorkbenchSearch
             variant="home"
             showHeadline={false}
-            tableLayout={false}
+            tableLayout
             onSubmit={(text) => router.push(`/agents?q=${encodeURIComponent(text)}`)}
           />
         </section>

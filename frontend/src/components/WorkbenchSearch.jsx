@@ -1,10 +1,9 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLocale } from '../context/LocaleContext';
 import { useWorkbenchSearch } from '../hooks/useWorkbenchSearch';
-import { fetchWorkbenchToolbar } from '../services/agentService';
-import { WORKBENCH_TOOLBAR_FALLBACK } from '../data/workbenchToolbarFallback';
 
 export const WORKBENCH_CATEGORY_IDS = [
   'use_cases',
@@ -25,6 +24,17 @@ const CAT_ICONS = {
   create_content: '✍️',
   analyze_research: '📊',
 };
+
+/** Netlify-style toolbar: fixed icons + category hints (interactive filters). */
+const NETLIFY_TOOLBAR = [
+  { id: 'mic', icon: '🎤', tone: 'purple', category: 'create_content', queryHint: 'Voice, audio, or podcast ideas' },
+  { id: 'clip', icon: '📎', tone: 'orange', category: 'use_cases', queryHint: 'Documents, files, and attachments' },
+  { id: 'img', icon: '🖼️', tone: 'blue', category: 'create_content', queryHint: 'Images, visuals, and design' },
+  { id: 'dl', icon: '⬇️', tone: 'cyan', category: 'analyze_research', queryHint: 'Data, exports, and analysis' },
+  { id: 'vid', icon: '🎬', tone: 'pink', category: 'create_content', queryHint: 'Video scripts and motion content' },
+  { id: 'scr', icon: '🖥️', tone: 'green', category: 'monitor', queryHint: 'Dashboards, monitoring, and ops' },
+  { id: 'more', icon: '➕', tone: 'neutral', category: 'use_cases', queryHint: 'Explore new use cases' },
+];
 
 function TablePagination({ page, totalPages, total, onPageChange, disabled, labels }) {
   return (
@@ -64,6 +74,7 @@ export default function WorkbenchSearch({
   onSubmit,
 }) {
   const { t } = useLocale();
+  const router = useRouter();
   const useTable = tableLayout !== undefined ? tableLayout : variant === 'agents';
   const {
     query,
@@ -80,31 +91,8 @@ export default function WorkbenchSearch({
     shuffle,
   } = useWorkbenchSearch('use_cases', initialQuery);
 
-  const [toolbarActions, setToolbarActions] = useState(WORKBENCH_TOOLBAR_FALLBACK);
   const [activeToolId, setActiveToolId] = useState(null);
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      try {
-        const actions = await fetchWorkbenchToolbar();
-        if (!cancelled && Array.isArray(actions) && actions.length > 0) {
-          setToolbarActions(actions);
-        }
-      } catch {
-        if (!cancelled) setToolbarActions(WORKBENCH_TOOLBAR_FALLBACK);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  const send = useCallback(() => {
-    const text = query.trim();
-    if (text.length < 1) return;
-    onSubmit?.(text);
-  }, [query, onSubmit]);
+  const [agentMode, setAgentMode] = useState(true);
 
   const handleToolbarClick = useCallback(
     (action) => {
@@ -113,10 +101,16 @@ export default function WorkbenchSearch({
       setCategory(action.category);
       if (action.queryHint) setQuery(action.queryHint);
       setPage(1);
-      window.setTimeout(() => setActiveToolId(null), 450);
+      window.setTimeout(() => setActiveToolId(null), 500);
     },
     [setCategory, setQuery, setPage]
   );
+
+  const send = useCallback(() => {
+    const text = query.trim();
+    if (text.length < 1) return;
+    onSubmit?.(text);
+  }, [query, onSubmit]);
 
   const onKeyDownArea = useCallback(
     (e) => {
@@ -128,7 +122,28 @@ export default function WorkbenchSearch({
     [send]
   );
 
+  const toggleStar = useCallback(() => {
+    try {
+      const raw = localStorage.getItem('nexusai:wb:favorites');
+      const list = raw ? JSON.parse(raw) : [];
+      const q = query.trim();
+      if (!q) return;
+      const next = list.includes(q) ? list.filter((x) => x !== q) : [...list, q].slice(-20);
+      localStorage.setItem('nexusai:wb:favorites', JSON.stringify(next));
+    } catch {
+      /* ignore */
+    }
+  }, [query]);
+
+  const insertDemo = useCallback(() => {
+    setQuery('Help me choose an AI model for summarising long documents and drafting emails.');
+    setCategory('research');
+    setPage(1);
+  }, [setQuery, setCategory, setPage]);
+
   const showHero = showHeadline !== undefined ? showHeadline : variant === 'agents';
+  const placeholder =
+    variant === 'home' ? t('workbench.placeholderHome') : t('workbench.placeholder');
 
   const labels = {
     prev: t('workbench.pagination.prev'),
@@ -138,6 +153,9 @@ export default function WorkbenchSearch({
   };
 
   const catLabel = t(`workbench.categories.${category}`);
+  const canSend = query.trim().length >= 1;
+  const matchesLabel =
+    totalMatches > 0 ? `${totalMatches} match${totalMatches === 1 ? '' : 'es'}` : null;
 
   return (
     <div className={`wb-root wb-root--${variant}${useTable ? ' wb-root--table' : ''}`}>
@@ -154,23 +172,47 @@ export default function WorkbenchSearch({
       <div className="wb-search-row">
         <div className="wb-input-wrap">
           <div className="wb-input-inner">
-            <textarea
-              className="wb-textarea"
-              rows={2}
-              placeholder={t('workbench.placeholder')}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              onKeyDown={onKeyDownArea}
-              maxLength={2000}
-              aria-label={t('workbench.placeholder')}
-            />
+            <div className="wb-input-body">
+              <textarea
+                className="wb-textarea"
+                rows={variant === 'home' ? 3 : 2}
+                placeholder={placeholder}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={onKeyDownArea}
+                maxLength={2000}
+                aria-label={placeholder}
+              />
+              <div className="wb-input-top-tools">
+                <button
+                  type="button"
+                  className="wb-mini-circle wb-mini-circle--lime"
+                  onClick={toggleStar}
+                  title={t('workbench.starPrompt')}
+                  aria-label={t('workbench.starPrompt')}
+                >
+                  ✦
+                </button>
+                <button
+                  type="button"
+                  className="wb-mini-circle wb-mini-circle--sky"
+                  onClick={insertDemo}
+                  title={t('workbench.quickDemo')}
+                  aria-label={t('workbench.quickDemo')}
+                >
+                  ▶
+                </button>
+              </div>
+            </div>
+
             <div className="wb-input-toolbar">
               <div className="wb-toolbar-icons" role="toolbar" aria-label={t('workbench.toolbarAria')}>
-                {toolbarActions.map((action) => (
+                {NETLIFY_TOOLBAR.map((action) => (
                   <button
                     key={action.id}
                     type="button"
-                    className={`wb-icon-btn${activeToolId === action.id ? ' wb-icon-btn--active' : ''}`}
+                    className={`wb-icon-btn wb-icon-btn--${action.tone}${activeToolId === action.id ? ' wb-icon-btn--active' : ''}`}
+                    data-tone={action.tone}
                     onClick={() => handleToolbarClick(action)}
                     disabled={loading}
                     aria-label={action.queryHint || action.id}
@@ -180,7 +222,21 @@ export default function WorkbenchSearch({
                   </button>
                 ))}
               </div>
-              <span className="wb-agent-pill">{t('workbench.agentLabel')}</span>
+              <span className="wb-toolbar-divider" aria-hidden />
+              <button
+                type="button"
+                className={`wb-agent-pill${agentMode ? ' wb-agent-pill--on' : ''}`}
+                onClick={() => setAgentMode((v) => !v)}
+                aria-pressed={agentMode}
+                aria-label={agentMode ? t('workbench.agentModeOn') : t('workbench.agentModeOff')}
+                title={agentMode ? t('workbench.agentModeOn') : t('workbench.agentModeOff')}
+              >
+                <span className="wb-agent-pill-ico" aria-hidden>
+                  🖥
+                </span>
+                <span>{t('workbench.agentLabel')}</span>
+                <span className="wb-agent-pill-plus">+</span>
+              </button>
             </div>
           </div>
         </div>
@@ -188,10 +244,16 @@ export default function WorkbenchSearch({
           type="button"
           className={`wb-send${loading ? ' wb-send--loading' : ''}`}
           onClick={send}
-          disabled={loading}
-          aria-label={t('workbench.send')}
+          disabled={loading || !canSend}
+          aria-label={`${t('workbench.letsGo')} — ${t('workbench.send')}`}
         >
-          {loading ? <span className="wb-spinner" /> : <span className="wb-send-icon">➤</span>}
+          {loading ? (
+            <span className="wb-spinner" />
+          ) : (
+            <span className="wb-send-icon" aria-hidden>
+              ✈
+            </span>
+          )}
         </button>
       </div>
 
@@ -203,7 +265,10 @@ export default function WorkbenchSearch({
             role="tab"
             aria-selected={category === id}
             className={`wb-chip${category === id ? ' wb-chip--active' : ''}`}
-            onClick={() => setCategory(id)}
+            onClick={() => {
+              setCategory(id);
+              setPage(1);
+            }}
           >
             <span className="wb-chip-ico">{CAT_ICONS[id]}</span>
             <span>{t(`workbench.categories.${id}`)}</span>
@@ -211,7 +276,7 @@ export default function WorkbenchSearch({
         ))}
       </div>
 
-      <div className="wb-suggestions wb-suggestions--panel">
+      <div className={`wb-suggestions wb-suggestions--panel${agentMode ? ' wb-suggestions--agent' : ''}`}>
         {error && <p className="wb-error">{error}</p>}
 
         {useTable ? (
@@ -267,9 +332,16 @@ export default function WorkbenchSearch({
               </tbody>
             </table>
             <div className="tbl-toolbar">
-              <button type="button" className="wb-shuffle" onClick={shuffle} disabled={loading}>
-                🔀 {t('workbench.shuffle')}
-              </button>
+              <div className="tbl-toolbar-left">
+                <button type="button" className="wb-shuffle" onClick={shuffle} disabled={loading}>
+                  🔀 {t('workbench.shuffle')}
+                </button>
+                {variant === 'home' ? (
+                  <button type="button" className="wb-view-all" onClick={() => router.push('/agents')}>
+                    {t('workbench.viewAll')} →
+                  </button>
+                ) : null}
+              </div>
               <TablePagination
                 page={page}
                 totalPages={totalPages}
@@ -304,9 +376,7 @@ export default function WorkbenchSearch({
                 ))}
             </ul>
             <div className="wb-suggest-footer">
-              <span className="wb-meta">
-                {totalMatches > 0 ? `${totalMatches} match${totalMatches === 1 ? '' : 'es'}` : null}
-              </span>
+              <span className="wb-meta">{matchesLabel}</span>
               <button type="button" className="wb-shuffle" onClick={shuffle}>
                 🔀 {t('workbench.shuffle')}
               </button>
