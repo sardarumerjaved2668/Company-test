@@ -2,10 +2,12 @@
 
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import api from '../services/api';
+import { useLocale } from './LocaleContext';
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  const { applyServerLocale } = useLocale();
   const [user, setUser] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,6 +32,7 @@ export function AuthProvider({ children }) {
       applyToken(data.accessToken);
       const session = await api.get('/auth/session', { headers: { Authorization: `Bearer ${data.accessToken}` } });
       setUser(session.data.user);
+      applyServerLocale(session.data.user?.language);
       return data.accessToken;
     } catch {
       applyToken(null);
@@ -44,7 +47,7 @@ export function AuthProvider({ children }) {
     if (stored) {
       api.defaults.headers.common['Authorization'] = `Bearer ${stored}`;
       api.get('/auth/session')
-        .then(({ data }) => { setAccessToken(stored); setUser(data.user); })
+        .then(({ data }) => { setAccessToken(stored); setUser(data.user); applyServerLocale(data.user?.language); })
         .catch((err) => {
           if (err.response?.data?.code === 'TOKEN_EXPIRED') tryRefresh();
           else applyToken(null);
@@ -59,6 +62,7 @@ export function AuthProvider({ children }) {
     const { data } = await api.post('/auth/register', { name, email, password });
     applyToken(data.accessToken);
     setUser(data.user);
+    applyServerLocale(data.user?.language);
     return data;
   };
 
@@ -66,6 +70,7 @@ export function AuthProvider({ children }) {
     const { data } = await api.post('/auth/login', { email, password });
     applyToken(data.accessToken);
     setUser(data.user);
+    applyServerLocale(data.user?.language);
     return data;
   };
 

@@ -104,3 +104,12 @@ exports.changePassword = async (req, res, next) => {
     res.json({ success: true, message: 'Password updated' });
   } catch (err) { next(err); }
 };
+
+exports.updateLanguage = async (req, res, next) => {
+  try {
+    const { language } = req.body;
+    if (!language) return res.status(400).json({ success: false, message: 'language is required' });
+    const user = await User.findByIdAndUpdate(req.user._id, { language }, { new: true });
+    res.json({ success: true, language: user.language });
+  } catch (err) { next(err); }
+};

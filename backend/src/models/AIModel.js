@@ -28,6 +28,8 @@ const aiModelSchema = new mongoose.Schema(
     },
     releaseDate: { type: String },
     openSource: { type: Boolean, default: false },
+    /** Research / academic-only licence (not general commercial API) */
+    researchOnly: { type: Boolean, default: false },
     apiAvailable: { type: Boolean, default: true },
     isActive: { type: Boolean, default: true },
   },

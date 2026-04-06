@@ -4,17 +4,18 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
+import { useAuthModal } from '../context/AuthModalContext';
 import { useLocale } from '../context/LocaleContext';
-import { UI_LANGUAGES } from '../i18n/locales';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
-  const { locale, setLocale, t } = useLocale();
+  const { openAuthModal } = useAuthModal();
+  const { locale, setLocale, t, languages } = useLocale();
   const pathname = usePathname();
   const router = useRouter();
   const [langOpen, setLangOpen] = useState(false);
 
-  const activeLang = UI_LANGUAGES.find((l) => l.id === locale) || UI_LANGUAGES[0];
+  const activeLang = languages.find((l) => l.id === locale) || languages[0];
 
   const handleLogout = async () => {
     await logout();
@@ -65,7 +66,7 @@ export default function Navbar() {
             {langOpen && (
               <div className="nav-lang-menu">
                 <div className="nav-lang-header">{t('nav.appLanguage')}</div>
-                {UI_LANGUAGES.map((lang) => (
+                {languages.map((lang) => (
                   <button
                     key={lang.id}
                     type="button"
@@ -96,7 +97,13 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <Link href="/login" className={`nav-link${pathname === '/login' ? ' nav-link-active' : ''}`}>{t('nav.signIn')}</Link>
+              <button
+                type="button"
+                className="nav-link nav-link-btn"
+                onClick={() => openAuthModal({ tab: 'signin', returnTo: pathname })}
+              >
+                {t('nav.signIn')}
+              </button>
               <Link href="/marketplace?model=gpt5&details=1" className="btn-nav-cta">{t('nav.tryFree')}</Link>
             </>
           )}

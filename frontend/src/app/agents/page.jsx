@@ -1,17 +1,11 @@
 'use client';
 
 import { useLocale } from '../../context/LocaleContext';
-
-const AGENT_TEMPLATES = [
-  { id: 'research', model: 'GPT‑4.5' },
-  { id: 'support', model: 'GPT‑4.5' },
-  { id: 'review', model: 'Claude Opus 4.5' },
-  { id: 'analysis', model: 'Gemini' },
-  { id: 'content', model: 'GPT‑4.1' },
-];
+import { useAgents } from '../../hooks/useAgents';
 
 export default function AgentsPage() {
   const { t, messages } = useLocale();
+  const { agents, loading, error } = useAgents();
 
   return (
     <main>
@@ -48,34 +42,49 @@ export default function AgentsPage() {
 
           <aside className="ag-templates">
             <h2 className="ag-templates-title">{t('agents.templatesTitle')}</h2>
-            <div className="ag-templates-grid">
-              {AGENT_TEMPLATES.map((tpl) => {
-                const block = messages.agents?.templates?.[tpl.id];
-                const title = block?.title || tpl.id;
-                const description = block?.description || '';
-                const tags = block?.tags || [];
-                return (
-                  <article key={tpl.id} className="ag-template-card">
-                    <div className="ag-template-icon">📄</div>
-                    <h3 className="ag-template-title">{title}</h3>
-                    <p className="ag-template-desc">{description}</p>
-                    <div className="ag-template-meta">
-                      <span className="ag-template-model">{tpl.model}</span>
-                      <div className="ag-template-tags">
-                        {tags.map((tag) => (
-                          <span key={tag} className="ag-template-tag">
-                            {tag}
-                          </span>
-                        ))}
+
+            {loading && (
+              <p style={{ color: '#9ca3af', fontSize: 14, padding: '12px 0' }}>
+                {t('agents.loading') || 'Loading agents…'}
+              </p>
+            )}
+
+            {error && (
+              <p style={{ color: '#ef4444', fontSize: 14, padding: '12px 0' }}>
+                {t('agents.error') || 'Failed to load agents.'}
+              </p>
+            )}
+
+            {!loading && !error && (
+              <div className="ag-templates-grid">
+                {agents.map((agent) => {
+                  const block = messages.agents?.templates?.[agent.templateId];
+                  const title = block?.title || agent.title;
+                  const description = block?.description || agent.description;
+                  const tags = block?.tags || agent.tags || [];
+                  return (
+                    <article key={agent._id || agent.templateId} className="ag-template-card">
+                      <div className="ag-template-icon">{agent.icon || '📄'}</div>
+                      <h3 className="ag-template-title">{title}</h3>
+                      <p className="ag-template-desc">{description}</p>
+                      <div className="ag-template-meta">
+                        <span className="ag-template-model">{agent.model}</span>
+                        <div className="ag-template-tags">
+                          {tags.map((tag) => (
+                            <span key={tag} className="ag-template-tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                    <button type="button" className="ag-template-link">
-                      {t('agents.useTemplate')}
-                    </button>
-                  </article>
-                );
-              })}
-            </div>
+                      <button type="button" className="ag-template-link">
+                        {t('agents.useTemplate')}
+                      </button>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
           </aside>
         </section>
       </div>

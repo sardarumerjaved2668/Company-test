@@ -9,6 +9,12 @@ const rateLimit = require('express-rate-limit');
 const connectDB = require('./src/config/db');
 const errorHandler = require('./src/middleware/errorHandler');
 const authRoutes = require('./src/routes/auth');
+const modelRoutes = require('./src/routes/models');
+const recommendRoutes = require('./src/routes/recommend');
+const chatRoutes = require('./src/routes/chats');
+const agentRoutes = require('./src/routes/agents');
+const discoverRoutes = require('./src/routes/discover');
+const languageRoutes = require('./src/routes/languages');
 
 connectDB();
 
@@ -32,6 +38,12 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 // ── Routes ────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
+app.use('/api/models', modelRoutes);
+app.use('/api/recommend', recommendRoutes);
+app.use('/api/chats', chatRoutes);
+app.use('/api/agents', agentRoutes);
+app.use('/api/discover', discoverRoutes);
+app.use('/api/languages', languageRoutes);
 
 app.use((req, res) => res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` }));
 app.use(errorHandler);

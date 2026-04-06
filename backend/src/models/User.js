@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: [true, 'Email required'], unique: true, lowercase: true, trim: true, match: [/^\S+@\S+\.\S+$/, 'Invalid email'] },
     password: { type: String, required: [true, 'Password required'], minlength: 6, select: false },
     role: { type: String, enum: ['user', 'admin'], default: 'user' },
+    language: { type: String, default: 'en' },
     refreshToken: { type: String, select: false },
     recommendationHistory: [
       {

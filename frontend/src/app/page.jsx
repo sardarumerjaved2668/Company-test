@@ -242,7 +242,9 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+      </div>
 
+      <div className="home-newsletter-footer">
         <section className="newsletter-section">
           <div className="newsletter-inner">
             <h2 className="newsletter-title">

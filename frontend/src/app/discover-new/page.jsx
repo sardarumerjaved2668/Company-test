@@ -1,18 +1,33 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useLocale } from '../../context/LocaleContext';
-
-const FEED_ITEMS = [
-  { id: 1, month: 'MAR', day: '26', lab: 'Google DeepMind' },
-  { id: 2, month: 'MAR', day: '22', lab: 'MIT CSAIL' },
-  { id: 3, month: 'MAR', day: '18', lab: 'Anthropic' },
-  { id: 4, month: 'MAR', day: '15', lab: 'Nexus AI' },
-  { id: 5, month: 'MAR', day: '10', lab: 'Stanford NLP' },
-  { id: 6, month: 'FEB', day: '5', lab: 'DeepSeek‑R1' },
-];
+import api from '../../services/api';
 
 export default function DiscoverNewPage() {
   const { t } = useLocale();
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    api.get('/discover')
+      .then(({ data }) => {
+        if (!cancelled && data.success) setItems(data.items || []);
+      })
+      .catch(() => { /* non-critical */ })
+      .finally(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
+  }, []);
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr);
+    if (isNaN(d)) return { month: '—', day: '—' };
+    return {
+      month: d.toLocaleString('en-US', { month: 'short' }).toUpperCase(),
+      day: String(d.getDate()).padStart(2, '0'),
+    };
+  }
 
   return (
     <main>
@@ -21,20 +36,35 @@ export default function DiscoverNewPage() {
           <h1 className="dn-title">{t('discover.title')}</h1>
         </header>
 
+        {loading && (
+          <p style={{ color: '#9ca3af', fontSize: 14, padding: '24px' }}>
+            {t('discover.loading') || 'Loading…'}
+          </p>
+        )}
+
+        {!loading && items.length === 0 && (
+          <p style={{ color: '#9ca3af', fontSize: 14, padding: '24px' }}>
+            {t('discover.empty') || 'No items found.'}
+          </p>
+        )}
+
         <section className="dn-feed">
-          {FEED_ITEMS.map((item) => (
-            <article key={item.id} className="dn-card">
-              <div className="dn-card-date">
-                <span className="dn-card-month">{item.month}</span>
-                <span className="dn-card-day">{item.day}</span>
-              </div>
-              <div className="dn-card-main">
-                <div className="dn-card-lab">{item.lab}</div>
-                <h2 className="dn-card-title">{t(`discover.items.${item.id}.title`)}</h2>
-                <p className="dn-card-summary">{t(`discover.items.${item.id}.summary`)}</p>
-              </div>
-            </article>
-          ))}
+          {items.map((item) => {
+            const { month, day } = formatDate(item.publishDate);
+            return (
+              <article key={item._id} className="dn-card">
+                <div className="dn-card-date">
+                  <span className="dn-card-month">{month}</span>
+                  <span className="dn-card-day">{day}</span>
+                </div>
+                <div className="dn-card-main">
+                  <div className="dn-card-lab">{item.lab}</div>
+                  <h2 className="dn-card-title">{item.title}</h2>
+                  <p className="dn-card-summary">{item.summary}</p>
+                </div>
+              </article>
+            );
+          })}
         </section>
       </div>
     </main>

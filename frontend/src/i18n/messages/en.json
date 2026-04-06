@@ -39,6 +39,30 @@
       "passwordMismatch": "Passwords do not match",
       "passwordShort": "Password must be at least 6 characters",
       "registrationFailed": "Registration failed."
+    },
+    "modal": {
+      "headline": "Build Smarter with AI Agents.",
+      "subhead": "Access 525+ models, create custom agents, and automate your workflow — all in one platform.",
+      "features": {
+        "f1": "525+ AI models from 30+ labs",
+        "f2": "Custom agent builder with any model",
+        "f3": "Connect tools, memory & APIs",
+        "f4": "Real-time analytics & monitoring"
+      },
+      "tabSignIn": "Sign In",
+      "tabSignUp": "Create Account",
+      "welcomeBackSub": "Sign in to your NexusAI account to continue.",
+      "emailLabel": "Email address",
+      "emailPh": "you@company.com",
+      "passwordLabel": "Password",
+      "passwordPh": "Enter your password",
+      "forgotPassword": "Forgot password?",
+      "signInCta": "Sign In",
+      "orContinue": "Or continue with",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one",
+      "socialSoon": "Social sign-in coming soon.",
+      "closeAria": "Close"
     }
   },
   "dashboard": {
@@ -163,17 +187,67 @@
     "subtitle": "Search and compare frontier models across labs, pricing tiers, and capabilities.",
     "pillModels": "525+ models",
     "pillUpdated": "Updated daily",
+    "modelsCountLabel": "models",
+    "categoryPills": {
+      "all": "All",
+      "language": "Language",
+      "vision": "Vision",
+      "code": "Code",
+      "imageGen": "Image Gen",
+      "audio": "Audio",
+      "openSource": "Open Source"
+    },
+    "tierLabels": {
+      "free": "Free tier",
+      "budget": "Budget",
+      "mid": "Popular",
+      "premium": "Premium"
+    },
+    "hotBadge": "Hot",
+    "howToUse": "How to use",
+    "reviews": "reviews",
+    "agentTemplates": "agent templates from backend",
+    "maxPriceHeading": "MAX INPUT $ / 1M",
+    "minRatingHeading": "MIN RATING",
+    "noLimit": "No limit",
     "searchPlaceholder": "Search models, capabilities...",
+    "categoryTablist": "Categories",
     "filters": {
       "allLabs": "All Labs",
       "openai": "OpenAI",
       "anthropic": "Anthropic",
       "googleDeepMind": "Google DeepMind",
       "meta": "Meta",
+      "deepseek": "DeepSeek",
+      "alibaba": "Alibaba (Qwen)",
+      "xai": "xAI / Grok",
       "mistral": "Mistral",
       "cohere": "Cohere",
       "microsoft": "Microsoft",
-      "amazon": "Amazon"
+      "amazon": "Amazon",
+      "baidu": "Baidu"
+    },
+    "showingFrom": "Showing models from",
+    "clearFilter": "Clear filter",
+    "upTo100": "Up to $100",
+    "upToPrefix": "Up to",
+    "ratingAny": "Any",
+    "pricingHeadingUi": "PRICING MODEL",
+    "quickGuidesHeading": "QUICK GUIDES",
+    "guidePrompt": "Prompt engineering tips",
+    "guideAgent": "Agent creation guide",
+    "guidePricing": "Pricing comparison",
+    "pricingGroups": {
+      "payPerUse": "Pay-per-use",
+      "subscription": "Subscription",
+      "freeTier": "Free tier",
+      "enterprise": "Enterprise"
+    },
+    "licenceHeading": "LICENCE",
+    "licence": {
+      "commercial": "Commercial",
+      "openSource": "Open source",
+      "researchOnly": "Research only"
     },
     "providers": {
       "openai": "OpenAI",
@@ -184,7 +258,8 @@
     "pricingTypes": {
       "payPerUse": "Pay-per-use",
       "subscription": "Subscription",
-      "freeTier": "Free tier"
+      "freeTier": "Free tier",
+      "enterprise": "Enterprise"
     },
     "tags": {
       "Premium": "Premium",
@@ -203,6 +278,7 @@
     "pricingHeading": "PRICING MODEL",
     "emptyTitle": "No models found",
     "emptyHint": "Try a different search term or filter.",
+    "emptyDbHint": "The catalogue is empty. From the backend folder run `npm run seed` with MongoDB running.",
     "loading": "Loading marketplace…",
     "modalClose": "Close",
     "modalBy": "by",

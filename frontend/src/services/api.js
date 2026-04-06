@@ -5,6 +5,19 @@ const api = axios.create({
   withCredentials: true,
 });
 
+/** Browser: use absolute backend URL when set (CORS + avoids rewrite issues). Server/SSR: keep /api. */
+api.interceptors.request.use((config) => {
+  if (typeof window !== 'undefined') {
+    const u = process.env.NEXT_PUBLIC_API_URL;
+    if (u && String(u).trim()) {
+      config.baseURL = `${String(u).replace(/\/$/, '')}/api`;
+    } else {
+      config.baseURL = '/api';
+    }
+  }
+  return config;
+});
+
 // Attach JWT from localStorage if available and not already set
 api.interceptors.request.use(
   (config) => {
@@ -46,7 +59,12 @@ api.interceptors.response.use(
       } catch (e) {
         drain(e, null);
         localStorage.removeItem('accessToken');
-        window.location.href = '/login';
+        try {
+          sessionStorage.setItem('nexusai:openAuth', 'signin');
+        } catch {
+          /* ignore */
+        }
+        window.location.href = '/';
         return Promise.reject(e);
       } finally { isRefreshing = false; }
     }

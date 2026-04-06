@@ -7,6 +7,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "seed": "node src/seed/seedModels.js",
+    "seed:agents": "node src/seed/seedAgents.js",
+    "seed:discover": "node src/seed/seedDiscover.js",
+    "seed:all": "npm run seed && npm run seed:agents && npm run seed:discover",
     "test": "node src/tests/recommendation.test.js"
   },
   "dependencies": {
