@@ -1,7 +1,8 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import ComposerMediaToolbar from './ComposerMediaToolbar';
 import { useLocale } from '../context/LocaleContext';
 import { useWorkbenchSearch } from '../hooks/useWorkbenchSearch';
 
@@ -24,17 +25,6 @@ const CAT_ICONS = {
   create_content: '✍️',
   analyze_research: '📊',
 };
-
-/** Netlify-style toolbar: fixed icons + category hints (interactive filters). */
-const NETLIFY_TOOLBAR = [
-  { id: 'mic', icon: '🎤', tone: 'purple', category: 'create_content', queryHint: 'Voice, audio, or podcast ideas' },
-  { id: 'clip', icon: '📎', tone: 'orange', category: 'use_cases', queryHint: 'Documents, files, and attachments' },
-  { id: 'img', icon: '🖼️', tone: 'blue', category: 'create_content', queryHint: 'Images, visuals, and design' },
-  { id: 'dl', icon: '⬇️', tone: 'cyan', category: 'analyze_research', queryHint: 'Data, exports, and analysis' },
-  { id: 'vid', icon: '🎬', tone: 'pink', category: 'create_content', queryHint: 'Video scripts and motion content' },
-  { id: 'scr', icon: '🖥️', tone: 'green', category: 'monitor', queryHint: 'Dashboards, monitoring, and ops' },
-  { id: 'more', icon: '➕', tone: 'neutral', category: 'use_cases', queryHint: 'Explore new use cases' },
-];
 
 function TablePagination({ page, totalPages, total, onPageChange, disabled, labels }) {
   return (
@@ -91,20 +81,8 @@ export default function WorkbenchSearch({
     shuffle,
   } = useWorkbenchSearch('use_cases', initialQuery);
 
-  const [activeToolId, setActiveToolId] = useState(null);
+  const textareaRef = useRef(null);
   const [agentMode, setAgentMode] = useState(true);
-
-  const handleToolbarClick = useCallback(
-    (action) => {
-      if (!action?.category) return;
-      setActiveToolId(action.id);
-      setCategory(action.category);
-      if (action.queryHint) setQuery(action.queryHint);
-      setPage(1);
-      window.setTimeout(() => setActiveToolId(null), 500);
-    },
-    [setCategory, setQuery, setPage]
-  );
 
   const send = useCallback(() => {
     const text = query.trim();
@@ -174,6 +152,7 @@ export default function WorkbenchSearch({
           <div className="wb-input-inner">
             <div className="wb-input-body">
               <textarea
+                ref={textareaRef}
                 className="wb-textarea"
                 rows={variant === 'home' ? 3 : 2}
                 placeholder={placeholder}
@@ -206,21 +185,8 @@ export default function WorkbenchSearch({
             </div>
 
             <div className="wb-input-toolbar">
-              <div className="wb-toolbar-icons" role="toolbar" aria-label={t('workbench.toolbarAria')}>
-                {NETLIFY_TOOLBAR.map((action) => (
-                  <button
-                    key={action.id}
-                    type="button"
-                    className={`wb-icon-btn wb-icon-btn--${action.tone}${activeToolId === action.id ? ' wb-icon-btn--active' : ''}`}
-                    data-tone={action.tone}
-                    onClick={() => handleToolbarClick(action)}
-                    disabled={loading}
-                    aria-label={action.queryHint || action.id}
-                    title={action.queryHint || action.id}
-                  >
-                    {action.icon}
-                  </button>
-                ))}
+              <div className="wb-toolbar-icons" role="toolbar" aria-label={t('composer.toolbarAria')}>
+                <ComposerMediaToolbar variant="workbench" setText={setQuery} textareaRef={textareaRef} />
               </div>
               <span className="wb-toolbar-divider" aria-hidden />
               <button

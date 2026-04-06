@@ -10,6 +10,33 @@
     "signIn": "Sign in",
     "tryFree": "Try free →"
   },
+  "composer": {
+    "toolbarAria": "Input tools — voice, uploads, camera, and screen share",
+    "mic": "Voice typing",
+    "upload": "Upload files",
+    "audio": "Upload audio",
+    "camera": "Camera preview",
+    "screen": "Share screen",
+    "attach": "Attach files",
+    "image": "Upload image",
+    "more": "More — AI assist",
+    "sparkle": "AI assist — insert prompt helper",
+    "sparklePrefix": "[AI assist] Describe what you need help with: ",
+    "stopCapture": "Stop",
+    "capturePreview": "Media preview",
+    "cameraOn": "Camera is on — preview below.",
+    "cameraOnShort": "Camera",
+    "screenOn": "Screen share is active — preview below.",
+    "screenOnShort": "Screen",
+    "screenEnded": "Screen share ended.",
+    "attached": "Added to message: {{names}}",
+    "unsupportedVoice": "Voice typing needs Chrome or Edge (Speech Recognition).",
+    "unsupportedCamera": "Camera is not available in this browser.",
+    "unsupportedScreen": "Screen sharing is not available in this browser.",
+    "voiceError": "Voice typing stopped or failed. Try again.",
+    "cameraDenied": "Camera permission was denied.",
+    "screenDenied": "Screen share was cancelled or denied."
+  },
   "auth": {
     "login": {
       "title": "Welcome back",
@@ -556,6 +583,8 @@
     "viewModelDetails": "View model details",
     "sendTitle": "Send",
     "clearChat": "Clear conversation",
+    "tabNavAria": "Topic focus — pick what you are working on",
+    "promptsForTab": "Starter prompts for {{tab}}",
     "quickActions": "QUICK ACTIONS",
     "sections": {
       "navTools": "NAVIGATION & TOOLS",

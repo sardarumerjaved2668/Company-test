@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useRef, useEffect, useMemo, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import ModelModal from '../../components/ModelModal';
+import ComposerMediaToolbar from '../../components/ComposerMediaToolbar';
 import { useLocale } from '../../context/LocaleContext';
 import { CHAT_HUB_ACTION_PROMPTS, CHAT_HUB_TAB_PROMPTS } from '../../i18n/chatHubPrompts';
 import { useChatHubPersistence } from '../../hooks/useChatHubPersistence';
@@ -174,11 +175,13 @@ export default function ChatHubPage() {
           </div>
 
           <div className="nxc-model-list">
-            {modelsLoading ? (
+            {modelsLoading && (
               <p className="nxc-sb-empty">{t('chatHub.loadingModels')}</p>
-            ) : filteredModels.length === 0 ? (
+            )}
+            {!modelsLoading && filteredModels.length === 0 && (
               <p className="nxc-sb-empty">{t('chatHub.noModels')}</p>
-            ) : (
+            )}
+            {!modelsLoading &&
               filteredModels.map((model, i) => (
                 <button
                   key={model._id || i}
@@ -200,8 +203,7 @@ export default function ChatHubPage() {
                     </span>
                   </span>
                 </button>
-              ))
-            )}
+              ))}
           </div>
         </aside>
 
@@ -294,14 +296,8 @@ export default function ChatHubPage() {
             </div>
 
             <div className="nxc-inp-bar">
-              <div className="nxc-tools">
-                <button type="button" className="nxc-tool" title={t('chatHub.toolVoice')}>🎙️</button>
-                <button type="button" className="nxc-tool" title={t('chatHub.toolAttach')}>📎</button>
-                <button type="button" className="nxc-tool" title={t('chatHub.toolVideo')}>🎥</button>
-                <button type="button" className="nxc-tool nxc-tool-code" title={t('chatHub.toolCode')}>&lt;/&gt;</button>
-                <button type="button" className="nxc-tool" title={t('chatHub.toolDocument')}>📋</button>
-                <button type="button" className="nxc-tool" title={t('chatHub.toolImage')}>🖼️</button>
-                <button type="button" className="nxc-tool nxc-tool-plus" title={t('chatHub.toolMore')}>+</button>
+              <div className="nxc-tools-col">
+                <ComposerMediaToolbar variant="nxc" setText={setChatInput} textareaRef={textareaRef} />
               </div>
               <div className="nxc-bar-right">
                 <button
@@ -323,11 +319,13 @@ export default function ChatHubPage() {
               </div>
             </div>
 
-            <div className="nxc-tabs-row">
+            <div className="nxc-tabs-row" role="tablist" aria-label={t('chatHub.tabNavAria')}>
               {CATEGORY_TAB_KEYS.map((tabKey) => (
                 <button
                   key={tabKey}
                   type="button"
+                  role="tab"
+                  aria-selected={activeTab === tabKey}
                   className={`nxc-tab${activeTab === tabKey ? ' nxc-tab-on' : ''}`}
                   onClick={() => setActiveTab(tabKey)}
                 >
@@ -339,10 +337,10 @@ export default function ChatHubPage() {
               ))}
             </div>
 
-            <div className="nxc-prompts-grid">
+            <div className="nxc-prompts-grid" aria-label={t('chatHub.promptsForTab', { tab: t(`chatHub.tabs.${activeTab}`) })}>
               {promptRows.map((row, i) => (
                 <button
-                  key={i}
+                  key={`${activeTab}-${i}`}
                   type="button"
                   className="nxc-prompt-item"
                   onClick={() => {
