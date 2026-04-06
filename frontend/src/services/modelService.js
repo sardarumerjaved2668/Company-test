@@ -3,25 +3,58 @@ import fallbackModels from '../data/models.json';
 
 let cachedModels = null;
 
-/**
- * @param {Record<string, string|number|boolean|undefined>} [params] query params for GET /api/models
- * @returns {Promise<{ models: unknown[], total: number, page: number, pages: number }>}
- */
-function apiErrorMessage(err, fallback) {
-  if (err?.response?.data?.message) return String(err.response.data.message);
-  const code = err?.code;
-  const msg = err?.message;
-  if (
-    code === 'ERR_NETWORK' ||
-    code === 'ECONNREFUSED' ||
-    msg === 'Network Error'
-  ) {
-    return (
-      'Cannot reach the API. Start the backend (port 5000), ensure NEXT_PUBLIC_API_URL matches it, ' +
-      'and run `npm run seed` in the backend folder if the database is empty.'
-    );
-  }
-  return msg || fallback;
+/** Mirrors backend/src/utils/marketplaceTabCounts.js for offline / empty-DB fallbacks */
+const CATEGORY_MODE_MAP = {
+  language: ['Language', 'Translation', 'Multilingual'],
+  vision: ['Multimodal', 'Vision'],
+  code: ['Code'],
+  imageGen: ['Image'],
+  audio: ['Audio', 'Speech', 'Music', 'Voice'],
+};
+
+function matchesCategoryMode(m, mode) {
+  if (!mode || mode === 'all') return true;
+  if (mode === 'openSource') return !!m.openSource;
+  const needles = CATEGORY_MODE_MAP[mode];
+  if (!needles?.length) return false;
+  const cats = m.categories || [];
+  return needles.some((needle) => {
+    const rx = new RegExp(needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+    return cats.some((c) => rx.test(c));
+  });
+}
+
+function tabCountsFromModels(models) {
+  const TAB_IDS = ['all', 'language', 'vision', 'code', 'imageGen', 'audio', 'openSource'];
+  return TAB_IDS.map((id) => ({
+    id,
+    count:
+      id === 'all'
+        ? models.length
+        : models.filter((m) => matchesCategoryMode(m, id)).length,
+  }));
+}
+
+function statsFromModels(models) {
+  const map = {};
+  models.forEach((m) => {
+    const p = m.provider || 'Unknown';
+    map[p] = (map[p] || 0) + 1;
+  });
+  const byProvider = Object.entries(map)
+    .map(([provider, count]) => ({ provider, count }))
+    .sort((a, b) => a.provider.localeCompare(b.provider));
+  return { total: models.length, byProvider };
+}
+
+function fallbackPageResult() {
+  const models = fallbackModels;
+  return {
+    models,
+    total: models.length,
+    page: 1,
+    pages: 1,
+  };
 }
 
 export async function fetchModelsPage(params = {}) {
@@ -30,16 +63,20 @@ export async function fetchModelsPage(params = {}) {
       params: { limit: 500, ...params },
     });
     if (!data.success || !Array.isArray(data.models)) {
-      throw new Error(data.message || 'Failed to load models');
+      return fallbackPageResult();
+    }
+    let models = data.models;
+    if (models.length === 0) {
+      return fallbackPageResult();
     }
     return {
-      models: data.models,
-      total: data.total ?? data.models.length,
+      models,
+      total: data.total ?? models.length,
       page: data.page ?? 1,
       pages: data.pages ?? 1,
     };
   } catch (err) {
-    throw new Error(apiErrorMessage(err, 'Failed to load models'));
+    return fallbackPageResult();
   }
 }
 
@@ -65,27 +102,36 @@ export async function fetchMarketplaceTabCounts() {
   try {
     const { data } = await api.get('/models/marketplace-tabs');
     if (!data.success || !Array.isArray(data.tabs)) {
-      throw new Error(data.message || 'Failed to load marketplace tabs');
+      const m = fallbackModels;
+      return { total: m.length, tabs: tabCountsFromModels(m) };
+    }
+    const total = data.total ?? 0;
+    if (total === 0) {
+      const m = fallbackModels;
+      return { total: m.length, tabs: tabCountsFromModels(m) };
     }
     return {
-      total: data.total ?? 0,
+      total,
       tabs: data.tabs,
     };
-  } catch (err) {
-    throw new Error(apiErrorMessage(err, 'Failed to load marketplace tabs'));
+  } catch {
+    const m = fallbackModels;
+    return { total: m.length, tabs: tabCountsFromModels(m) };
   }
 }
 
 export async function fetchModelStats() {
   try {
     const { data } = await api.get('/models/stats');
-    if (!data.success) throw new Error('Failed to load stats');
+    if (!data.success) return statsFromModels(fallbackModels);
+    const total = data.total ?? 0;
+    if (total === 0) return statsFromModels(fallbackModels);
     return {
-      total: data.total,
+      total,
       byProvider: data.byProvider || [],
     };
-  } catch (err) {
-    throw new Error(apiErrorMessage(err, 'Failed to load stats'));
+  } catch {
+    return statsFromModels(fallbackModels);
   }
 }
 

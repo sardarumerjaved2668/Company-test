@@ -1,13 +1,16 @@
 'use client';
 
 import { useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import RecommendPanel from '../components/RecommendPanel';
+import WorkbenchSearch from '../components/WorkbenchSearch';
 import { useLocale } from '../context/LocaleContext';
 import homeContent from '../data/homeContent.json';
 import { overlayHomeItem } from '../i18n/mergeHomeContent';
 
 export default function HomePage() {
   const { t, messages } = useLocale();
+  const router = useRouter();
   const {
     stats,
     featuredModels,
@@ -93,6 +96,21 @@ export default function HomePage() {
             <span>{t('home.stats.labs', { count: stats.labsCount })}</span>
             <span>{t('home.stats.rating', { rating: stats.avgRating })}</span>
           </div>
+        </section>
+
+        <section className="home-workbench-section" aria-labelledby="home-workbench-title">
+          <div className="home-workbench-head">
+            <h2 id="home-workbench-title" className="home-workbench-title">
+              {t('workbench.homeSectionTitle')}
+            </h2>
+            <p className="home-workbench-sub">{t('workbench.homeSectionSub')}</p>
+          </div>
+          <WorkbenchSearch
+            variant="home"
+            showHeadline={false}
+            tableLayout={false}
+            onSubmit={(text) => router.push(`/agents?q=${encodeURIComponent(text)}`)}
+          />
         </section>
 
         <section id="rec-panel">

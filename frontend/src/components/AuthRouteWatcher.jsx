@@ -5,14 +5,8 @@ import { usePathname } from 'next/navigation';
 import { useAuth } from '../hooks/useAuth';
 import { useAuthModal } from '../context/AuthModalContext';
 
-/** Routes that require sign-in; modal opens automatically when visited logged out */
-export const AUTH_REQUIRED_PREFIXES = [
-  '/chat-hub',
-  '/marketplace',
-  '/agents',
-  '/discover-new',
-  '/dashboard',
-];
+/** Routes that require sign-in; modal opens automatically when visited logged out. Only Agents is gated — other app pages stay open to guests. */
+export const AUTH_REQUIRED_PREFIXES = ['/agents'];
 
 function pathRequiresAuth(pathname) {
   return AUTH_REQUIRED_PREFIXES.some(
